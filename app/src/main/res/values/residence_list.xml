@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="do_array">
+        <item>지역을 선택해주세요</item>
+        <item>아이템1</item>
+        <item>아이템2</item>
+        <item>아이템3</item>
+        <item>아이템4</item>
+    </string-array>
+    <string-array name="si_array">
+        <item>지역을 선택해주세요</item>
+        <item>아이템1</item>
+        <item>아이템2</item>
+        <item>아이템3</item>
+        <item>아이템4</item>
+    </string-array>
+</resources>

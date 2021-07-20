@@ -1,0 +1,51 @@
+package com.example.mycapstone
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
+import com.example.mycapstone.data.Policy
+import com.example.mycapstone.databinding.HomeFragmentBinding
+import com.example.mycapstone.databinding.PolicyItemBinding
+import com.example.mycapstone.databinding.RegisterFragmentBinding
+
+class PolicyAdapter :
+    RecyclerView.Adapter<PolicyAdapter.ViewHolder>() {
+    private var data = mutableListOf<Policy>()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+//       val binding = PolicyItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+//        return ViewHolder(binding)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = DataBindingUtil.inflate<ViewDataBinding>(layoutInflater, R.layout.policy_item, parent,false)
+        return ViewHolder(binding as PolicyItemBinding)
+
+//        val view = LayoutInflater.from(context).inflate(R.layout.policy_item, parent, false)
+//        return ViewHolder(view)
+    }
+
+    override fun getItemCount(): Int = data.size
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(data[position])
+    }
+
+    class ViewHolder(private val binding: PolicyItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: Policy) {
+            binding.policyField.text = item.field
+            binding.policyName.text = item.name
+            binding.policyPeriod.text = item.period
+            binding.policyTarget.text = item.target
+        }
+    }
+    
+    fun replaceList(newData: MutableList<Policy>){
+        data = newData.toMutableList()
+        notifyDataSetChanged()
+    }
+}

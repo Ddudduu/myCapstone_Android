@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.mycapstone.ui.register.RegisterViewmodel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="10dp"
+            tools:ignore="MissingClass">
+
+            <TextView
+                android:id="@+id/tv_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="회원가입"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:background="#000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_register" />
+
+            <TextView
+                android:id="@+id/tv_necessary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="필수 입력 사항"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+            <TextView
+                android:id="@+id/tv_ID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="아이디"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_necessary" />
+
+            <EditText
+                android:id="@+id/edit_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:hint="아이디를 입력하세요"
+                android:textSize="15dp"
+                app:layout_constraintStart_toEndOf="@id/tv_ID"
+                app:layout_constraintTop_toBottomOf="@id/tv_necessary" />
+
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="비밀번호"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_ID" />
+
+            <EditText
+                android:id="@+id/edit_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:hint="비밀번호를 입력하세요"
+                android:textSize="15dp"
+                app:layout_constraintStart_toEndOf="@id/tv_password"
+                app:layout_constraintTop_toBottomOf="@id/edit_id" />
+
+            <View
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="30dp"
+                android:background="#808080"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_password" />
+
+            <TextView
+                android:id="@+id/tv_extra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="추가 입력 사항"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guideline2" />
+
+
+            <TextView
+                android:id="@+id/tv_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="나이"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_extra" />
+
+            <EditText
+                android:id="@+id/edit_age"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:maxLength="2"
+                android:padding="10dp"
+                app:layout_constraintStart_toEndOf="@id/tv_age"
+                app:layout_constraintTop_toBottomOf="@id/tv_extra" />
+
+            <TextView
+                android:id="@+id/tv_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="성별"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_age"
+                app:layout_goneMarginLeft="30dp" />
+
+            <RadioGroup
+                android:id="@+id/radio_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/tv_gender"
+                app:layout_constraintTop_toBottomOf="@+id/tv_age">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="남"
+                    android:textSize="13dp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="여"
+                    android:textSize="13dp" />
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/tv_residence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="50dp"
+                android:text="거주지"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_gender" />
+
+            <TextView
+                android:id="@+id/residence_do"
+                android:layout_width="13dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="10dp"
+                android:text="도"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/tv_residence"
+                app:layout_constraintTop_toBottomOf="@id/radio_gender" />
+
+            <Spinner
+                android:id="@+id/spinner_do"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:background="#EEEEEE"
+                app:layout_constraintStart_toEndOf="@id/tv_residence"
+                app:layout_constraintTop_toBottomOf="@id/residence_do" />
+
+            <TextView
+                android:id="@+id/tv_residence_si"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="10dp"
+                android:text="시/군"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/residence_do"
+                app:layout_constraintTop_toBottomOf="@id/radio_gender" />
+
+
+            <Spinner
+                android:id="@+id/spinner_si"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:background="#EEEEEE"
+                app:layout_constraintStart_toEndOf="@id/spinner_do"
+                app:layout_constraintTop_toBottomOf="@id/tv_residence_si" />
+
+
+            <TextView
+                android:id="@+id/tv_interest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="관심분야"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_residence" />
+
+            <CheckBox
+                android:id="@+id/chk_employment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="10dp"
+                android:text="취업"
+                android:textSize="13dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_interest" />
+
+            <CheckBox
+                android:id="@+id/chk_setup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:text="창업"
+                android:textSize="13dp"
+                app:layout_constraintStart_toEndOf="@id/chk_employment"
+                app:layout_constraintTop_toBottomOf="@id/tv_interest" />
+
+            <CheckBox
+                android:id="@+id/chk_Housing_Transportation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:text="주거 / 교통"
+                android:textSize="13dp"
+                app:layout_constraintStart_toEndOf="@id/chk_setup"
+                app:layout_constraintTop_toBottomOf="@id/tv_interest" />
+
+            <CheckBox
+                android:id="@+id/chk_Life_Finance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="10dp"
+                android:text="생활/금융"
+                android:textSize="13dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chk_employment" />
+
+            <CheckBox
+                android:id="@+id/chk_culture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="문화"
+                android:textSize="13dp"
+                app:layout_constraintStart_toEndOf="@id/chk_Life_Finance"
+                app:layout_constraintTop_toBottomOf="@id/chk_setup" />
+
+            <TextView
+                android:id="@+id/tv_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="학력"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chk_Life_Finance" />
+
+            <RadioGroup
+                android:id="@+id/radio_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_school">
+
+                <RadioButton
+                    android:id="@+id/radio_High_school"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="고졸"
+                    android:textSize="13dp" />
+
+                <RadioButton
+                    android:id="@+id/radio_University"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="대졸"
+                    android:textSize="13dp" />
+
+                <RadioButton
+                    android:id="@+id/radio_Graduate_school"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="대학원생"
+                    android:textSize="13dp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="취업상태"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radio_school" />
+
+            <RadioGroup
+                android:id="@+id/radio_employment_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_job">
+
+                <RadioButton
+                    android:id="@+id/job_search_unemployment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="구직/미취업"
+                    android:textSize="13dp" />
+
+                <RadioButton
+                    android:id="@+id/tenure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="재직"
+                    android:textSize="13dp" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/button_sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#039BE5"
+                android:padding="5dp"
+                android:text="회원 가입 완료"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/button_later"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radio_employment_status" />
+
+            <Button
+                android:id="@+id/button_later"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#BDBDBD"
+                android:padding="5dp"
+                android:text="나중에 할래요"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button_sign_up"
+                app:layout_constraintTop_toBottomOf="@id/radio_employment_status" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
