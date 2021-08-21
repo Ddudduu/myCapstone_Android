@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#bfc5c9"
+        android:theme="@style/AppTheme"
+        app:contentInsetStart="0dp"
+        app:layout_scrollFlags="scroll|enterAlways|snap">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10px"
+            android:padding="5dp"
+            android:src="@drawable/search" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="검색어"
+            android:textSize="30dp"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:textColor="#bfc5c9"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="10dp"
+            tools:ignore="MissingClass">
+
+            <TextView
+                android:id="@+id/search_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="검색 필터"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/guideline_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:background="#000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_filter" />
+
+            <TextView
+                android:id="@+id/tv_interest_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/radius"
+                android:padding="10dp"
+                android:text="관심분야"
+                android:textColor="#ffffff"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_filter" />
+
+            <TextView
+                android:id="@+id/tv_interest_search_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/radius1"
+                android:padding="10dp"
+                android:text="전체"
+                android:textColor="#ffffff"
+                android:textSize="13dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_interest_search" />
+
+            <TextView
+                android:id="@+id/tv_interest_search_employment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/radius1"
+                android:padding="10dp"
+                android:text="취업"
+                android:textColor="#ffffff"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_interest_search_all"
+                app:layout_constraintTop_toBottomOf="@+id/tv_interest_search" />
+
+            <TextView
+                android:id="@+id/tv_interest_search_setup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/radius1"
+                android:padding="10dp"
+                android:text="창업"
+                android:textColor="#ffffff"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_interest_search_employment"
+                app:layout_constraintTop_toBottomOf="@+id/tv_interest_search" />
+
+            <TextView
+                android:id="@+id/tv_interest_search_residence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/radius1"
+                android:padding="10dp"
+                android:text="주거/교통"
+                android:textColor="#ffffff"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_interest_search_setup"
+                app:layout_constraintTop_toBottomOf="@+id/tv_interest_search" />
+
+            <TextView
+                android:id="@+id/tv_interest_search_life"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/radius1"
+                android:padding="10dp"
+                android:text="생활/금융"
+                android:textColor="#ffffff"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_interest_search_residence"
+                app:layout_constraintTop_toBottomOf="@+id/tv_interest_search" />
+
+            <TextView
+                android:id="@+id/tv_interest_search_culture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/radius1"
+                android:padding="10dp"
+                android:text="문화"
+                android:textColor="#ffffff"
+                android:textSize="13dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_interest_search_life" />
+
+            <TextView
+                android:id="@+id/tv_age_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/radius"
+                android:padding="10dp"
+                android:text="연령"
+                android:textColor="#ffffff"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_interest_search_culture" />
+
+            <EditText
+                android:id="@+id/edit_age_search"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/memo_border"
+                android:padding="2dp"
+                android:hint="만 나이"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_age_search"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="모든 연령"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/edit_age_search"
+                app:layout_constraintTop_toBottomOf="@+id/tv_age_search"/>
+
+            <TextView
+                android:id="@+id/gender_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/radius"
+                android:padding="10dp"
+                android:text="성별"
+                android:textColor="#ffffff"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_age_search" />
+
+            <RadioGroup
+                android:id="@+id/select_gender_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gender_search">
+
+                <RadioButton
+                    android:id="@+id/select_gender_all_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="전체"
+                    android:textSize="13dp" />
+
+                <RadioButton
+                    android:id="@+id/select_male_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="남자"
+                    android:textSize="13dp" />
+
+                <RadioButton
+                    android:id="@+id/select_female_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="여자"
+                    android:textSize="13dp" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/region_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/radius"
+                android:padding="10dp"
+                android:text="지역"
+                android:textColor="#ffffff"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/select_gender_search" />
+
+            <CheckBox
+                android:id="@+id/chk_all_region_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="전체"
+                android:textSize="13dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/region_search"/>
+
+            <CheckBox
+                android:id="@+id/chk_Seoul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="서울"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_all_region_search"
+                app:layout_constraintTop_toBottomOf="@id/region_search"/>
+
+            <CheckBox
+                android:id="@+id/chk_Gyeonggi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="서울"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_all_region_search"
+                app:layout_constraintTop_toBottomOf="@id/region_search"/>
+
+            <CheckBox
+                android:id="@+id/chk_Incheon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="인천"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Gyeonggi"
+                app:layout_constraintTop_toBottomOf="@id/region_search"/>
+
+            <CheckBox
+                android:id="@+id/chk_Gangwon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="강원"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Incheon"
+                app:layout_constraintTop_toBottomOf="@id/region_search"/>
+
+            <CheckBox
+                android:id="@+id/chk_Daejeon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="대전"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Gangwon"
+                app:layout_constraintTop_toBottomOf="@id/region_search"/>
+
+            <CheckBox
+                android:id="@+id/chk_Sejong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:padding="10dp"
+                android:text="세종"
+                android:textSize="13dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chk_all_region_search"/>
+
+            <CheckBox
+                android:id="@+id/chk_Chungbuk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="충북"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Sejong"
+                app:layout_constraintTop_toBottomOf="@id/chk_all_region_search"/>
+
+            <CheckBox
+                android:id="@+id/chk_Chungnam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="충남"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Chungbuk"
+                app:layout_constraintTop_toBottomOf="@id/chk_all_region_search"/>
+
+            <CheckBox
+                android:id="@+id/chk_Daegu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="대구"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Chungnam"
+                app:layout_constraintTop_toBottomOf="@id/chk_all_region_search"/>
+
+            <CheckBox
+                android:id="@+id/chk_Gyeongbuk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="경북"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Daegu"
+                app:layout_constraintTop_toBottomOf="@id/chk_all_region_search"/>
+
+            <CheckBox
+                android:id="@+id/chk_Gwangju"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:padding="10dp"
+                android:text="광주"
+                android:textSize="13dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chk_Sejong"/>
+
+            <CheckBox
+                android:id="@+id/chk_Jeonbuk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="전북"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Gwangju"
+                app:layout_constraintTop_toBottomOf="@id/chk_Sejong"/>
+
+            <CheckBox
+                android:id="@+id/chk_Jeonam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="전남"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Jeonbuk"
+                app:layout_constraintTop_toBottomOf="@id/chk_Sejong"/>
+
+            <CheckBox
+                android:id="@+id/chk_Gyeonganm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="경남"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Jeonam"
+                app:layout_constraintTop_toBottomOf="@id/chk_Sejong"/>
+
+            <CheckBox
+                android:id="@+id/chk_Ulsan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="울산"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Gyeonganm"
+                app:layout_constraintTop_toBottomOf="@id/chk_Sejong"/>
+
+            <CheckBox
+                android:id="@+id/chk_Busan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:padding="10dp"
+                android:text="부산"
+                android:textSize="13dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chk_Gwangju"/>
+
+            <CheckBox
+                android:id="@+id/chk_Jeju"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="제주"
+                android:textSize="13dp"
+                app:layout_constraintLeft_toRightOf="@+id/chk_Busan"
+                app:layout_constraintTop_toBottomOf="@id/chk_Gwangju"/>
+
+
+            <ImageView
+                android:id="@+id/load_activity_register_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_downloading_file"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chk_Busan"/>
+
+            <TextView
+                android:id="@+id/load_activity_register_text"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="불러오기"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toRightOf="@+id/load_activity_register_icon"
+                app:layout_constraintTop_toBottomOf="@id/chk_Busan"/>
+
+            <ImageView
+                android:id="@+id/Refresh_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_redo_arrow_symbol"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintLeft_toRightOf="@+id/load_activity_register_text"
+                app:layout_constraintTop_toBottomOf="@id/chk_Busan"/>
+
+            <TextView
+                android:id="@+id/Refresh_text"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="초기화"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toRightOf="@+id/Refresh_icon"
+                app:layout_constraintTop_toBottomOf="@id/chk_Busan"/>
+
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</LinearLayout>
+
+
+
+
+
+
+
