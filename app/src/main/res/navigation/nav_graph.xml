@@ -24,5 +24,18 @@
         android:label="홈"
         tools:layout="@layout/home_fragment">
 
+        <action
+            android:id="@+id/action_home_fragment_to_policy_detail_fragment"
+            app:destination="@id/policy_detail_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/policy_detail_fragment"
+        android:name="com.example.mycapstone.ui.detail.PolicyDetailFragment"
+        android:label="상세페이지"
+        tools:layout="@layout/policy_detail_activity">
+        <argument
+            android:name="policyItem"
+            app:argType="com.example.mycapstone.data.Policy" />
     </fragment>
 </navigation>

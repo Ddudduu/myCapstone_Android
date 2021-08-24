@@ -1,4 +1,4 @@
-package com.example.mycapstone.ui.home
+package com.example.mycapstone.api
 
 import retrofit2.Call
 import retrofit2.http.GET

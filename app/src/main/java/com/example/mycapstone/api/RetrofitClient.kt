@@ -1,4 +1,4 @@
-package com.example.mycapstone.ui.home
+package com.example.mycapstone.api
 
 import com.tickaroo.tikxml.TikXml
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory

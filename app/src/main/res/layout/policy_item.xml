@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="policy"
+            type="com.example.mycapstone.data.Policy" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-
+        android:id="@+id/itemView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="#F2F3F5"
         android:orientation="vertical"
-        android:paddingHorizontal="30dp"
-        android:paddingVertical="10dp">
+        android:paddingVertical="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="5dp">
 
         <TextView
             android:id="@+id/policyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="정책 제목"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="정책 제목" />
 
         <TextView
             android:id="@+id/policyField"
@@ -30,9 +40,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
             android:text="분야"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/policyName" />
+            app:layout_constraintTop_toBottomOf="@id/policyName"
+            tools:text="분야" />
 
         <TextView
             android:id="@+id/policyPeriod"
@@ -41,9 +52,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="기간"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/policyField" />
+            app:layout_constraintTop_toBottomOf="@+id/policyField"
+            tools:text="기간" />
 
         <TextView
             android:id="@+id/policyTarget"
@@ -52,9 +64,16 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="대상"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/policyPeriod" />
+            app:layout_constraintTop_toBottomOf="@id/policyPeriod"
+            tools:text="대상" />
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            app:layout_constraintEnd_toStartOf="@id/imgview"
+            app:layout_constraintTop_toTopOf="@id/policyTarget" />
 
         <ImageView
             android:id="@+id/imgview"
@@ -63,6 +82,5 @@
             android:src="@drawable/star"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/policyTarget" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

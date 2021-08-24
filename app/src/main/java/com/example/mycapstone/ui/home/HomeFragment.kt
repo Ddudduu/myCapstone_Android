@@ -9,8 +9,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mycapstone.api.Api
 import com.example.mycapstone.PolicyAdapter
 import com.example.mycapstone.R
+import com.example.mycapstone.api.RetrofitClient
 import com.example.mycapstone.data.Policy
 import com.example.mycapstone.data.jynEmpSptRoot
 import com.example.mycapstone.databinding.HomeFragmentBinding
@@ -99,7 +101,11 @@ class HomeFragment : Fragment() {
                                 response.body()?.jynEmpSptList?.get(i)?.busiNm,
                                 response.body()?.jynEmpSptList?.get(i)?.busiTpCd,
                                 response.body()?.jynEmpSptList?.get(i)?.busiId,
-                                response.body()?.jynEmpSptList?.get(i)?.ageEtcCont
+                                response.body()?.jynEmpSptList?.get(i)?.age,
+                                response.body()?.jynEmpSptList?.get(i)?.dtlBusiNm,
+                                response.body()?.jynEmpSptList?.get(i)?.edubgEtcCont,
+                                response.body()?.jynEmpSptList?.get(i)?.empEtcCont,
+                                response.body()?.jynEmpSptList?.get(i)?.relInfoUrl,
                             )
                         )
                     }

@@ -18,18 +18,35 @@ data class jynEmpSptRoot(
 
 @Xml(name = "jynEmpSptList")
 data class jynEmpSptList(
-    // 사업 ID
-    @PropertyElement(name = "busiId")
-    val busiId: String?,
-    // 사업명
+    // 사업 이름
     @PropertyElement(name = "busiNm")
     val busiNm: String?,
     // 사업 유형
     @PropertyElement(name = "busiTpCd")
     val busiTpCd: String?,
+    // 사업 ID (기간)
+    @PropertyElement(name = "busiId")
+    val busiId: String?,
     // 연령
     @PropertyElement(name = "ageEtcCont")
-    val ageEtcCont: String?
+    val ageEtcCont: String?,
+
+    //지원 내용
+    @PropertyElement(name = "dtlBusiNm")
+    val dtlBusiNm: String?,
+    //학력
+    @PropertyElement(name = "edubgEtcCont")
+    val edubgEtcCont: String?,
+    //취업상태
+    @PropertyElement(name = "empEtcCont")
+    val empEtcCont: String?,
+    //관련 사이트
+    @PropertyElement(name = "relInfoUrl")
+    val relInfoUrl: String?
 ) {
     //constructor() : this(null, null, null)
+    val age: String?
+        get() {
+            return if (ageEtcCont.isNullOrBlank()) "무관" else ageEtcCont
+        }
 }
