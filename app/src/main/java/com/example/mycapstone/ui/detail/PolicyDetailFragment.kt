@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.mycapstone.R
-import com.example.mycapstone.databinding.PolicyDetailActivityBinding
+import com.example.mycapstone.databinding.PolicyDetailFragmentBinding
 
 class PolicyDetailFragment : Fragment() {
-    private lateinit var binding: PolicyDetailActivityBinding
+    private lateinit var binding: PolicyDetailFragmentBinding
     private val viewModel: PolicyDetailViewModel by viewModels()
 
     override fun onCreateView(
@@ -22,7 +22,7 @@ class PolicyDetailFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.policy_detail_activity,
+            R.layout.policy_detail_fragment,
             container,
             false
         )

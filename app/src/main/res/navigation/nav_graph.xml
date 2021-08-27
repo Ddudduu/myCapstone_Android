@@ -33,7 +33,7 @@
         android:id="@+id/policy_detail_fragment"
         android:name="com.example.mycapstone.ui.detail.PolicyDetailFragment"
         android:label="상세페이지"
-        tools:layout="@layout/policy_detail_activity">
+        tools:layout="@layout/policy_detail_fragment">
         <argument
             android:name="policyItem"
             app:argType="com.example.mycapstone.data.Policy" />
