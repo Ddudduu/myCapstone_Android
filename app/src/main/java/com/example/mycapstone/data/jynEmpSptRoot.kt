@@ -41,8 +41,8 @@ data class jynEmpSptList(
     @PropertyElement(name = "empEtcCont")
     val empEtcCont: String?,
     //관련 사이트
-    @PropertyElement(name = "relInfoUrl")
-    val relInfoUrl: String?
+    @PropertyElement(name = "detalUrl")
+    val detalUrl: String?
 ) {
     //constructor() : this(null, null, null)
     val age: String?

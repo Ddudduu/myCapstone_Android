@@ -1,5 +1,7 @@
 package com.example.mycapstone.ui.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +41,13 @@ class PolicyDetailFragment : Fragment() {
 
         if (policyItem != null) {
             viewModel.updatePolicyInfo(policyItem)
+        }
+
+        binding.url.setOnClickListener {
+            if (binding.url.text != null) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(binding.url.text.toString()))
+                startActivity(intent)
+            }
         }
     }
 }

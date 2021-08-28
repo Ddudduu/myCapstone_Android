@@ -105,7 +105,7 @@ class HomeFragment : Fragment() {
                                 response.body()?.jynEmpSptList?.get(i)?.dtlBusiNm,
                                 response.body()?.jynEmpSptList?.get(i)?.edubgEtcCont,
                                 response.body()?.jynEmpSptList?.get(i)?.empEtcCont,
-                                response.body()?.jynEmpSptList?.get(i)?.relInfoUrl,
+                                response.body()?.jynEmpSptList?.get(i)?.detalUrl,
                             )
                         )
                     }
