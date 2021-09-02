@@ -47,6 +47,7 @@
                     tools:listitem="@layout/policy_item" />
 
                 <TextView
+                    android:id="@+id/addButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"

@@ -8,14 +8,6 @@
         app:showAsAction="always"
        />
 
-    <!--
-    <item
-        android:id="@+id/home"
-        android:title="홈"
-        app:showAsAction="always"
-        android:enabled="true"/>
-
-    -->
     <item
         android:id="@+id/foundation"
         android:title="창업"

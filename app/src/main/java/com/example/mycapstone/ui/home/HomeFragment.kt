@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
 
     private var api: Api? = null
     private var retrofit: Retrofit? = null
-
+    private var startPage = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,22 +78,33 @@ class HomeFragment : Fragment() {
             policyAdapter.notifyDataSetChanged()
         })
 
-        viewModel.getPolicy(api, "PLCYTP040001")
+        viewModel.getPolicy(api, startPage, policyType = "PLCYTP040001")
 
         binding.btmNavi.setOnItemSelectedListener {
-            //
+            startPage = 1
             binding.rvPolicy.scrollToPosition(0)
+            viewModel.policyList.clear()
             when (it.title) {
-                "생활/금융" -> viewModel.getPolicy(api, "PLCYTP040001")
-                "창업" -> viewModel.getPolicy(api, "PLCYTP020002")
-                "취업" -> viewModel.getPolicy(api, "PLCYTP01")
-                "주거/교통" -> viewModel.getPolicy(api, "PLCYTP040002")
-                "문화" -> viewModel.getPolicy(api, "PLCYTP030002")
+                "생활/금융" -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP040001")
+                "창업" -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP020002")
+                "취업" -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP01")
+                "주거/교통" -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP040002")
+                "문화" -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP030002")
             }
             return@setOnItemSelectedListener true
         }
 
-
+        binding.addButton.setOnClickListener {
+            startPage += 1
+            Log.i("page: ", startPage.toString())
+            when (binding.btmNavi.selectedItemId) {
+                R.id.living -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP040001")
+                R.id.foundation -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP020002")
+                R.id.job -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP01")
+                R.id.residence -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP040002")
+                R.id.culture -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP040002")
+            }
+        }
     }
 }
 

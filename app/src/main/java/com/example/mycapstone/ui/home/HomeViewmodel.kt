@@ -13,15 +13,17 @@ import retrofit2.Response
 
 class HomeViewmodel : ViewModel() {
     private val key = "WNKS76ZZ47R04LNMS88MK2VR1HJ"
+    private val displayNum = 10
 
     private val _mDatas = MutableLiveData<List<Policy>>()
-    val mDatas:LiveData<List<Policy>> = _mDatas
+    val mDatas: LiveData<List<Policy>> = _mDatas
+    val policyList = mutableListOf<Policy>()
 
-    fun getPolicy(api: Api?, policyType: String) {
-        val policyList = mutableListOf<Policy>()
+    fun getPolicy(api: Api?, startPage:Int , policyType: String) {
+
 
         try {
-            val callResult = api?.getInfo(key, "xml", 1, 10, policyType)
+            val callResult = api?.getInfo(key, "xml", startPage, displayNum, policyType)
 
             callResult?.enqueue(object : Callback<jynEmpSptRoot> {
                 override fun onResponse(
