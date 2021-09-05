@@ -49,4 +49,12 @@ data class jynEmpSptList(
         get() {
             return if (ageEtcCont.isNullOrBlank()) "무관" else ageEtcCont
         }
+
+    val date: String?
+        get() {
+            return busiId?.substring(0, 4) + "." + busiId?.substring(
+                4,
+                6
+            ) + "." + busiId?.substring(6, 8)
+        }
 }

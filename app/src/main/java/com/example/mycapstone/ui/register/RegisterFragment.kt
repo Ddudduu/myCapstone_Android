@@ -13,7 +13,7 @@ import com.example.mycapstone.databinding.RegisterFragmentBinding
 import androidx.navigation.fragment.findNavController
 
 class RegisterFragment : Fragment() {
-    val viewModel: RegisterViewmodel by viewModels()
+    val viewModel: RegisterViewModel by viewModels()
     lateinit var binding: RegisterFragmentBinding
 
     override fun onCreateView(

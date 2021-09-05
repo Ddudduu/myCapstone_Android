@@ -5,15 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="viewModel_search"
-            type="com.example.mycapstone.ui.search.SearchViewmodel" />
+            name="vm"
+            type="com.example.mycapstone.ui.search.SearchViewModel" />
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/search_toolbar"
@@ -34,20 +35,18 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="검색어"
-                android:textSize="30dp"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
-                android:textColor="#bfc5c9"/>
-
+                android:hint="검색어"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/search_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            />
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/search_container"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:paddingLeft="20dp" />-->
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -201,10 +200,10 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/memo_border"
-                    android:padding="2dp"
                     android:hint="만 나이"
+                    android:padding="2dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_age_search"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_age_search" />
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -215,7 +214,7 @@
                     android:text="모든 연령"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/edit_age_search"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_age_search"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_age_search" />
 
                 <TextView
                     android:id="@+id/gender_search"
@@ -242,7 +241,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/gender_search">
 
                     <RadioButton
-                        android:id="@+id/select_gender_all_search"
+                        android:id="@+id/job_All"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -250,19 +249,19 @@
                         android:textSize="13dp" />
 
                     <RadioButton
-                        android:id="@+id/select_male_search"
+                        android:id="@+id/job_Incumbent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="남자"
+                        android:text="재직자"
                         android:textSize="13dp" />
 
                     <RadioButton
-                        android:id="@+id/select_female_search"
+                        android:id="@+id/job_Unemployment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="여자"
+                        android:text="미취업자"
                         android:textSize="13dp" />
 
                 </RadioGroup>
@@ -291,7 +290,7 @@
                     android:text="전체"
                     android:textSize="13dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/region_search"/>
+                    app:layout_constraintTop_toBottomOf="@id/region_search" />
 
                 <CheckBox
                     android:id="@+id/chk_Seoul"
@@ -302,7 +301,7 @@
                     android:text="서울"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_all_region_search"
-                    app:layout_constraintTop_toBottomOf="@id/region_search"/>
+                    app:layout_constraintTop_toBottomOf="@id/region_search" />
 
                 <CheckBox
                     android:id="@+id/chk_Gyeonggi"
@@ -313,7 +312,7 @@
                     android:text="서울"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_all_region_search"
-                    app:layout_constraintTop_toBottomOf="@id/region_search"/>
+                    app:layout_constraintTop_toBottomOf="@id/region_search" />
 
                 <CheckBox
                     android:id="@+id/chk_Incheon"
@@ -324,7 +323,7 @@
                     android:text="인천"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Gyeonggi"
-                    app:layout_constraintTop_toBottomOf="@id/region_search"/>
+                    app:layout_constraintTop_toBottomOf="@id/region_search" />
 
                 <CheckBox
                     android:id="@+id/chk_Gangwon"
@@ -335,7 +334,7 @@
                     android:text="강원"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Incheon"
-                    app:layout_constraintTop_toBottomOf="@id/region_search"/>
+                    app:layout_constraintTop_toBottomOf="@id/region_search" />
 
                 <CheckBox
                     android:id="@+id/chk_Daejeon"
@@ -346,19 +345,19 @@
                     android:text="대전"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Gangwon"
-                    app:layout_constraintTop_toBottomOf="@id/region_search"/>
+                    app:layout_constraintTop_toBottomOf="@id/region_search" />
 
                 <CheckBox
                     android:id="@+id/chk_Sejong"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:padding="10dp"
                     android:text="세종"
                     android:textSize="13dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search" />
 
                 <CheckBox
                     android:id="@+id/chk_Chungbuk"
@@ -369,7 +368,7 @@
                     android:text="충북"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Sejong"
-                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search" />
 
                 <CheckBox
                     android:id="@+id/chk_Chungnam"
@@ -380,7 +379,7 @@
                     android:text="충남"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Chungbuk"
-                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search" />
 
                 <CheckBox
                     android:id="@+id/chk_Daegu"
@@ -391,7 +390,7 @@
                     android:text="대구"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Chungnam"
-                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search" />
 
                 <CheckBox
                     android:id="@+id/chk_Gyeongbuk"
@@ -402,19 +401,19 @@
                     android:text="경북"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Daegu"
-                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search" />
 
                 <CheckBox
                     android:id="@+id/chk_Gwangju"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:padding="10dp"
                     android:text="광주"
                     android:textSize="13dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong" />
 
                 <CheckBox
                     android:id="@+id/chk_Jeonbuk"
@@ -425,7 +424,7 @@
                     android:text="전북"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Gwangju"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong" />
 
                 <CheckBox
                     android:id="@+id/chk_Jeonam"
@@ -436,7 +435,7 @@
                     android:text="전남"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Jeonbuk"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong" />
 
                 <CheckBox
                     android:id="@+id/chk_Gyeonganm"
@@ -447,7 +446,7 @@
                     android:text="경남"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Jeonam"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong" />
 
                 <CheckBox
                     android:id="@+id/chk_Ulsan"
@@ -458,19 +457,19 @@
                     android:text="울산"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Gyeonganm"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong" />
 
                 <CheckBox
                     android:id="@+id/chk_Busan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:padding="10dp"
                     android:text="부산"
                     android:textSize="13dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Gwangju"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_Gwangju" />
 
                 <CheckBox
                     android:id="@+id/chk_Jeju"
@@ -481,57 +480,56 @@
                     android:text="제주"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/chk_Busan"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Gwangju"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_Gwangju" />
 
 
                 <ImageView
                     android:id="@+id/load_activity_register_icon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/icon_downloading_file"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:scaleType="centerCrop"
+                    android:src="@drawable/icon_downloading_file"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Busan"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_Busan" />
 
                 <TextView
                     android:id="@+id/load_activity_register_text"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:text="불러오기"
-                    android:textColor="#000000"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:text="불러오기"
+                    android:textColor="#000000"
                     app:layout_constraintLeft_toRightOf="@+id/load_activity_register_icon"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Busan"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_Busan" />
 
                 <ImageView
                     android:id="@+id/Refresh_icon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/icon_redo_arrow_symbol"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:scaleType="centerCrop"
+                    android:src="@drawable/icon_redo_arrow_symbol"
                     app:layout_constraintLeft_toRightOf="@+id/load_activity_register_text"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Busan"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_Busan" />
 
                 <TextView
                     android:id="@+id/Refresh_text"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:text="초기화"
-                    android:textColor="#000000"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:text="초기화"
+                    android:textColor="#000000"
                     app:layout_constraintLeft_toRightOf="@+id/Refresh_icon"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Busan"/>
+                    app:layout_constraintTop_toBottomOf="@id/chk_Busan" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
-
 
 
     </LinearLayout>

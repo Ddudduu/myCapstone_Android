@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.mycapstone.ui.register.RegisterViewmodel" />
+            type="com.example.mycapstone.ui.register.RegisterViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

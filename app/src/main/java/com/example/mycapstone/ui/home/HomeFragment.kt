@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycapstone.api.Api
@@ -16,17 +15,13 @@ import com.example.mycapstone.PolicyAdapter
 import com.example.mycapstone.R
 import com.example.mycapstone.api.RetrofitClient
 import com.example.mycapstone.data.Policy
-import com.example.mycapstone.data.jynEmpSptRoot
 import com.example.mycapstone.databinding.HomeFragmentBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: HomeFragmentBinding
-    val viewModel: HomeViewmodel by viewModels()
+    val viewModel: HomeViewModel by viewModels()
     var policyAdapter: PolicyAdapter = PolicyAdapter()
 
     private var api: Api? = null
@@ -56,6 +51,10 @@ class HomeFragment : Fragment() {
             when (it.itemId) {
                 R.id.action_setting -> {
                     findNavController().navigate(R.id.action_home_fragment_to_setting_fragment)
+                    true
+                }
+                R.id.action_search -> {
+                    findNavController().navigate(R.id.action_home_fragment_to_search_fragment)
                     true
                 }
                 else -> false

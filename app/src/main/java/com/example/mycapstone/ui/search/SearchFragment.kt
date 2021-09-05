@@ -11,9 +11,8 @@ import com.example.mycapstone.R
 import com.example.mycapstone.databinding.SearchFragmentBinding
 
 
-
-class SearchFragment: Fragment()  {
-    val viewModel: SearchViewmodel by viewModels()
+class SearchFragment : Fragment() {
+    val viewModel: SearchViewModel by viewModels()
     lateinit var binding: SearchFragmentBinding
 
     override fun onCreateView(
@@ -22,8 +21,7 @@ class SearchFragment: Fragment()  {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.search_fragment, container, false)
-        binding.viewModelSearch = viewModel
+        binding.vm = viewModel
         return binding.root
     }
-
 }
