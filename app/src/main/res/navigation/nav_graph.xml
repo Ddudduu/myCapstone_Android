@@ -65,5 +65,5 @@
         android:id="@+id/search_fragment"
         android:name="com.example.mycapstone.ui.search.SearchFragment"
         android:label="검색"
-        tools:layout="@layout/search_fragment" />
+        tools:layout="@layout/search_fragment"></fragment>
 </navigation>

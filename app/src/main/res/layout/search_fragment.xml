@@ -95,89 +95,83 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/guideline_filter" />
 
-                <TextView
-                    android:id="@+id/tv_interest_search_all"
+                <CheckBox
+                    android:id="@+id/field_All"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/radius1"
-                    android:padding="10dp"
+                    android:checked="@{vm.isSelectedAll}"
                     android:text="전체"
-                    android:textColor="#ffffff"
-                    android:textSize="13dp"
+                    android:textColor="@color/black"
+                    android:textSize="11dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_interest_search" />
 
-                <TextView
-                    android:id="@+id/tv_interest_search_employment"
+                <CheckBox
+                    android:id="@+id/field_Employment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/radius1"
-                    android:padding="10dp"
+                    android:checked="@{vm.isSelectedEmployment}"
                     android:text="취업"
-                    android:textColor="#ffffff"
-                    android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/tv_interest_search_all"
+                    android:textColor="@color/black"
+                    android:textSize="11dp"
+                    app:layout_constraintLeft_toRightOf="@+id/field_All"
                     app:layout_constraintTop_toBottomOf="@+id/tv_interest_search" />
 
-                <TextView
-                    android:id="@+id/tv_interest_search_setup"
+                <CheckBox
+                    android:id="@+id/field_Startup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/radius1"
-                    android:padding="10dp"
+                    android:checked="@{vm.isSelectedStartup}"
                     android:text="창업"
-                    android:textColor="#ffffff"
-                    android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/tv_interest_search_employment"
+                    android:textColor="@color/black"
+                    android:textSize="11dp"
+                    app:layout_constraintLeft_toRightOf="@+id/field_Employment"
                     app:layout_constraintTop_toBottomOf="@+id/tv_interest_search" />
 
-                <TextView
-                    android:id="@+id/tv_interest_search_residence"
+                <CheckBox
+                    android:id="@+id/field_Residence"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/radius1"
-                    android:padding="10dp"
+                    android:checked="@{vm.isSelectedResidence}"
                     android:text="주거/교통"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/black"
                     android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/tv_interest_search_setup"
+                    app:layout_constraintLeft_toRightOf="@+id/field_Startup"
                     app:layout_constraintTop_toBottomOf="@+id/tv_interest_search" />
 
-                <TextView
-                    android:id="@+id/tv_interest_search_life"
+                <CheckBox
+                    android:id="@+id/field_Life"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/radius1"
-                    android:padding="10dp"
+                    android:checked="@{vm.isSelectedLife}"
                     android:text="생활/금융"
-                    android:textColor="#ffffff"
-                    android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/tv_interest_search_residence"
+                    android:textColor="@color/black"
+                    android:textSize="11dp"
+                    app:layout_constraintLeft_toRightOf="@+id/field_Residence"
                     app:layout_constraintTop_toBottomOf="@+id/tv_interest_search" />
 
-                <TextView
-                    android:id="@+id/tv_interest_search_culture"
+                <CheckBox
+                    android:id="@+id/field_Culture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/radius1"
-                    android:padding="10dp"
+                    android:checked="@{vm.isSelectedCulture}"
                     android:text="문화"
-                    android:textColor="#ffffff"
-                    android:textSize="13dp"
+                    android:textColor="@color/black"
+                    android:textSize="11dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_interest_search_life" />
+                    app:layout_constraintTop_toBottomOf="@+id/field_Life" />
 
                 <TextView
                     android:id="@+id/tv_age_search"
@@ -191,7 +185,7 @@
                     android:textColor="#ffffff"
                     android:textSize="15dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_interest_search_culture" />
+                    app:layout_constraintTop_toBottomOf="@+id/field_Culture" />
 
                 <EditText
                     android:id="@+id/edit_age_search"
@@ -526,6 +520,22 @@
                     android:textColor="#000000"
                     app:layout_constraintLeft_toRightOf="@+id/Refresh_icon"
                     app:layout_constraintTop_toBottomOf="@id/chk_Busan" />
+
+
+                <Button
+                    android:id="@+id/searchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/radius"
+                    android:text="검색하기"
+                    android:textColor="#ffffff"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Refresh_text" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
