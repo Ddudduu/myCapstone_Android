@@ -21,25 +21,13 @@ class SearchFragment : Fragment() {
       binding = DataBindingUtil.inflate(inflater, R.layout.search_fragment, container, false)
       binding.vm = viewModel
       with(binding) {
-         fieldAll.setOnClickListener { viewModel.checkPolicyField() }
-         fieldCulture.setOnClickListener { viewModel.checkPolicyField() }
-         fieldEmployment.setOnClickListener { viewModel.checkPolicyField() }
-         fieldLife.setOnClickListener { viewModel.checkPolicyField() }
-         fieldStartup.setOnClickListener { viewModel.checkPolicyField() }
-         fieldResidence.setOnClickListener { viewModel.checkPolicyField() }
          searchButton.setOnClickListener {
             val intent = Intent(requireActivity(), SearchResultActivity::class.java)
+            intent.putExtra("field", viewModel.field)
             startActivity(intent)
          }
 
       }
       return binding.root
    }
-
-   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-      super.onViewCreated(view, savedInstanceState)
-
-
-   }
-
 }

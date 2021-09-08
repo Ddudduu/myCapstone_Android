@@ -1,18 +1,19 @@
 package com.example.mycapstone
 
-import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycapstone.data.Policy
 import com.example.mycapstone.databinding.PolicyItemBinding
-import com.example.mycapstone.ui.home.HomeFragmentDirections
 
-class PolicyAdapter : RecyclerView.Adapter<PolicyAdapter.ViewHolder>() {
+class PolicyAdapter(private val listener: PolicyClickEventListener) : RecyclerView.Adapter<PolicyAdapter.ViewHolder>() {
+
+
+   interface PolicyClickEventListener {
+      fun onItemClick(policy: Policy)
+   }
 
    var data = mutableListOf<Policy>()
 
@@ -36,10 +37,11 @@ class PolicyAdapter : RecyclerView.Adapter<PolicyAdapter.ViewHolder>() {
          //            intent.putExtra("policyItem", data[position])
          //            startActivity(holder.itemView.context, intent, null)
 
-         if (it.context.toString().contains("MainActivity")) {
-            val action = HomeFragmentDirections.actionHomeFragmentToPolicyDetailFragment(data[position])
-            findNavController(it).navigate(action)
-         }
+         //         if (it.context.toString().contains("MainActivity")) {
+         //            val action = HomeFragmentDirections.actionHomeFragmentToPolicyDetailFragment(data[position])
+         //            findNavController(it).navigate(action)
+         //         }
+         listener.onItemClick(data[position])
       }
    }
 

@@ -1,15 +1,11 @@
 package com.example.mycapstone.ui.search.result
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycapstone.PolicyAdapter
@@ -18,17 +14,15 @@ import com.example.mycapstone.api.Api
 import com.example.mycapstone.api.RetrofitClient
 import com.example.mycapstone.data.Policy
 import com.example.mycapstone.data.jynEmpSptRoot
-import com.example.mycapstone.databinding.HomeFragmentBinding
 import com.example.mycapstone.databinding.SearchResultActivityBinding
-import com.example.mycapstone.ui.home.HomeViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 
-class SearchResultActivity : AppCompatActivity() {
+class SearchResultActivity : AppCompatActivity(), PolicyAdapter.PolicyClickEventListener {
    lateinit var binding: SearchResultActivityBinding
-   var policyAdapter: PolicyAdapter = PolicyAdapter()
+   var policyAdapter: PolicyAdapter = PolicyAdapter(this)
 
    private var api: Api? = null
    private var retrofit: Retrofit? = null
@@ -38,9 +32,10 @@ class SearchResultActivity : AppCompatActivity() {
    private val policyList = mutableListOf<Policy>()
 
    //임의로 field array 만들어서 테스트
-   private val typeArray = arrayOf("PLCYTP01", "PLCYTP030002")
+   private val typeArray = ArrayList<String>()
    private var startPage = 1
    private val displayNum = 10
+
 
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
@@ -49,7 +44,13 @@ class SearchResultActivity : AppCompatActivity() {
       binding.rvPolicy.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
       binding.rvPolicy.adapter = policyAdapter
 
+      val intent = intent
+      val result = intent.getSerializableExtra("field").toString()
+      checkField(result)
+
+
       typeArray.forEach {
+         Log.i("분야: ", it)
          callApi(it)
       }
    }
@@ -97,6 +98,32 @@ class SearchResultActivity : AppCompatActivity() {
       } catch (e: Exception) {
          Log.e("Error: ", "$e")
       }
+   }
+
+   override fun onItemClick(policy: Policy) {
+      TODO("Not yet implemented")
+   }
+
+   private fun checkField(result: String) {
+      val array = result.split(",")
+      array.forEach {
+         when (true) {
+            it.contains("전체") -> {
+               typeArray.add("PLCYTP01")
+               typeArray.add("PLCYTP020002")
+               typeArray.add("PLCYTP040002")
+               typeArray.add("PLCYTP040001")
+               typeArray.add("PLCYTP030002")
+               return
+            }
+            it.contains("취업") -> typeArray.add("PLCYTP01")
+            it.contains("창업") -> typeArray.add("PLCYTP020002")
+            it.contains("주거") -> typeArray.add("PLCYTP040002")
+            it.contains("생활") -> typeArray.add("PLCYTP040001")
+            it.contains("문화") -> typeArray.add("PLCYTP030002")
+         }
+      }
+
    }
 
 }

@@ -19,10 +19,11 @@ import com.example.mycapstone.databinding.HomeFragmentBinding
 import retrofit2.Retrofit
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
    private lateinit var binding: HomeFragmentBinding
    val viewModel: HomeViewModel by viewModels()
-   var policyAdapter: PolicyAdapter = PolicyAdapter()
+   var policyAdapter: PolicyAdapter = PolicyAdapter(this)
+
 
    private var api: Api? = null
    private var retrofit: Retrofit? = null
@@ -93,6 +94,11 @@ class HomeFragment : Fragment() {
             R.id.culture -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP040002")
          }
       }
+   }
+
+   override fun onItemClick(policy: Policy) {
+      val action = HomeFragmentDirections.actionHomeFragmentToPolicyDetailFragment(policy)
+      findNavController().navigate(action)
    }
 }
 
