@@ -1,11 +1,10 @@
 package com.example.mycapstone.ui.search.result
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycapstone.PolicyAdapter
@@ -29,7 +28,7 @@ class SearchResultActivity : AppCompatActivity(), PolicyAdapter.PolicyClickEvent
    private val key = "WNKS76ZZ47R04LNMS88MK2VR1HJ"
 
    private val mDatas = MutableLiveData<List<Policy>>()
-   private val policyList = mutableListOf<Policy>()
+   private var policyList = mutableListOf<Policy>()
 
    //임의로 field array 만들어서 테스트
    private val typeArray = ArrayList<String>()
@@ -45,17 +44,17 @@ class SearchResultActivity : AppCompatActivity(), PolicyAdapter.PolicyClickEvent
       binding.rvPolicy.adapter = policyAdapter
 
       val intent = intent
-      val result = intent.getSerializableExtra("field").toString()
-      checkField(result)
+      val fieldIntent = intent.getSerializableExtra("field").toString()
+      val jobIntent = intent.getStringExtra("job")
+      checkField(fieldIntent)
 
 
       typeArray.forEach {
-         Log.i("분야: ", it)
-         callApi(it)
+         callApi(it, jobIntent)
       }
    }
 
-   private fun callApi(policyType: String) {
+   private fun callApi(policyType: String, jobState: String?) {
       retrofit = RetrofitClient.getInstance()
       api = retrofit?.create(Api::class.java)
 
@@ -77,11 +76,13 @@ class SearchResultActivity : AppCompatActivity(), PolicyAdapter.PolicyClickEvent
                         response.body()?.jynEmpSptList?.get(i)?.empEtcCont,
                         response.body()?.jynEmpSptList?.get(i)?.detalUrl,
                      )
-                  )
-                  Log.i("list: ", policyList.toString())
+                  ) //Log.i("list: ", policyList.toString())
                }
+               checkJob(jobState)
                mDatas.value = policyList
-
+               policyList.forEach {
+                  it.jobState?.let { it1 -> Log.i("!!!정책 리스트!!!", it1) }
+               }
                if (!mDatas.value.isNullOrEmpty()) {
                   policyAdapter.data = (mDatas.value as MutableList<Policy>)
                }
@@ -123,7 +124,26 @@ class SearchResultActivity : AppCompatActivity(), PolicyAdapter.PolicyClickEvent
             it.contains("문화") -> typeArray.add("PLCYTP030002")
          }
       }
+   }
 
+   private fun checkJob(jobState: String?) {
+      when (true) {
+         jobState == "무관" -> {
+            return
+         }
+         jobState == "재직자" -> {
+            val temp = policyList.filter {
+               it.jobState == ("재직자")
+            }
+            policyList = temp as MutableList<Policy>
+         }
+         jobState == "미취업자" -> {
+            val temp = policyList.filter {
+               it.jobState == ("미취업자")
+            }
+            policyList = temp as MutableList<Policy>
+         }
+      }
    }
 
 }

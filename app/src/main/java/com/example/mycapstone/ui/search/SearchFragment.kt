@@ -24,6 +24,7 @@ class SearchFragment : Fragment() {
          searchButton.setOnClickListener {
             val intent = Intent(requireActivity(), SearchResultActivity::class.java)
             intent.putExtra("field", viewModel.field)
+            intent.putExtra("job", viewModel.jobState)
             startActivity(intent)
          }
 
