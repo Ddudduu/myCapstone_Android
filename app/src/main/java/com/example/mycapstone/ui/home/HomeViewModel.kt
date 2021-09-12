@@ -20,8 +20,6 @@ class HomeViewModel : ViewModel() {
    val policyList = mutableListOf<Policy>()
 
    fun getPolicy(api: Api?, startPage: Int, policyType: String) {
-
-
       try {
          val callResult = api?.getInfo(key, "xml", startPage, displayNum, policyType)
 
@@ -37,7 +35,7 @@ class HomeViewModel : ViewModel() {
                         response.body()?.jynEmpSptList?.get(i)?.age,
                         response.body()?.jynEmpSptList?.get(i)?.dtlBusiNm,
                         response.body()?.jynEmpSptList?.get(i)?.edubgEtcCont,
-                        response.body()?.jynEmpSptList?.get(i)?.empEtcCont,
+                        response.body()?.jynEmpSptList?.get(i)?.jobState,
                         response.body()?.jynEmpSptList?.get(i)?.detalUrl,
                      )
                   )

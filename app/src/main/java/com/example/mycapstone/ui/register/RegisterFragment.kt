@@ -36,7 +36,7 @@ class RegisterFragment : Fragment() {
                 .setMessage("회원 가입이 완료되었습니다.")
                 .setPositiveButton("확인"){dialog, which ->
                     // 메인 화면으로 넘어감
-                    findNavController().navigate(R.id.action_register_to_home)
+                    //findNavController().navigate(R.id.action_register_to_home)
                 }
                 .create()
 

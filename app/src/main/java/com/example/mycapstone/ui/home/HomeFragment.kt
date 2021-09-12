@@ -24,7 +24,6 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
    val viewModel: HomeViewModel by viewModels()
    var policyAdapter: PolicyAdapter = PolicyAdapter(this)
 
-
    private var api: Api? = null
    private var retrofit: Retrofit? = null
    private var startPage = 1

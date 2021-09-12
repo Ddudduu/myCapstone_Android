@@ -3,20 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/register_fragment">
+    app:startDestination="@id/home_fragment">
 
-
-    <fragment
-        android:id="@+id/register_fragment"
-        android:name="com.example.mycapstone.ui.register.RegisterFragment"
-        android:label="회원가입"
-        tools:layout="@layout/register_fragment">
-
-        <action
-            android:id="@+id/action_register_to_home"
-            app:destination="@+id/home_fragment" />
-
-    </fragment>
 
     <fragment
         android:id="@+id/home_fragment"
@@ -65,5 +53,31 @@
         android:id="@+id/search_fragment"
         android:name="com.example.mycapstone.ui.search.SearchFragment"
         android:label="검색"
-        tools:layout="@layout/search_fragment"></fragment>
+        tools:layout="@layout/search_fragment">
+        <action
+            android:id="@+id/action_search_fragment_to_search_result_fragment"
+            app:destination="@id/search_result_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/search_result_fragment"
+        android:name="com.example.mycapstone.ui.search.result.SearchResultFragment"
+        android:label="검색결과"
+        tools:layout="@layout/search_result_fragment">
+        <argument
+            android:name="field"
+            app:argType="string[]" />
+        <argument
+            android:name="jobState"
+            app:argType="string" />
+        <argument
+            android:name="region"
+            app:argType="string[]" />
+        <action
+            android:id="@+id/action_search_result_fragment_to_policy_detail_fragment"
+            app:destination="@id/policy_detail_fragment" />
+        <argument
+            android:name="isFromSearchFragment"
+            app:argType="boolean" />
+    </fragment>
 </navigation>

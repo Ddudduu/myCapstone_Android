@@ -279,11 +279,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/select_gender_search" />
 
                 <CheckBox
-                    android:id="@+id/chk_all_region_search"
+                    android:id="@+id/region_All"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedAll_Region}"
                     android:padding="10dp"
                     android:text="전체"
                     android:textSize="13dp"
@@ -291,195 +292,138 @@
                     app:layout_constraintTop_toBottomOf="@id/regionTitle" />
 
                 <CheckBox
-                    android:id="@+id/chk_Seoul"
+                    android:id="@+id/region_Seoul"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedSeoul}"
                     android:padding="10dp"
                     android:text="서울"
                     android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_all_region_search"
+                    app:layout_constraintLeft_toRightOf="@+id/region_All"
                     app:layout_constraintTop_toBottomOf="@id/regionTitle" />
 
                 <CheckBox
-                    android:id="@+id/chk_Gyeonggi"
+                    android:id="@+id/region_Gyeonggi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedGyeonggi}"
                     android:padding="10dp"
-                    android:text="서울"
+                    android:text="경기"
                     android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_all_region_search"
+                    app:layout_constraintLeft_toRightOf="@+id/region_Seoul"
                     app:layout_constraintTop_toBottomOf="@id/regionTitle" />
 
                 <CheckBox
-                    android:id="@+id/chk_Incheon"
+                    android:id="@+id/region_Incheon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedIncheon}"
                     android:padding="10dp"
                     android:text="인천"
                     android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Gyeonggi"
+                    app:layout_constraintLeft_toRightOf="@+id/region_Gyeonggi"
                     app:layout_constraintTop_toBottomOf="@id/regionTitle" />
 
                 <CheckBox
-                    android:id="@+id/chk_Gangwon"
+                    android:id="@+id/region_Gangwon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedGangwon}"
                     android:padding="10dp"
                     android:text="강원"
                     android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Incheon"
+                    app:layout_constraintLeft_toRightOf="@+id/region_Incheon"
                     app:layout_constraintTop_toBottomOf="@id/regionTitle" />
 
                 <CheckBox
-                    android:id="@+id/chk_Daejeon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
-                    android:text="대전"
-                    android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Gangwon"
-                    app:layout_constraintTop_toBottomOf="@id/regionTitle" />
-
-                <CheckBox
-                    android:id="@+id/chk_Sejong"
+                    android:id="@+id/region_Chungbuk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:padding="10dp"
-                    android:text="세종"
-                    android:textSize="13dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search" />
-
-                <CheckBox
-                    android:id="@+id/chk_Chungbuk"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedChungbuk}"
                     android:padding="10dp"
                     android:text="충북"
                     android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Sejong"
-                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/region_All" />
 
                 <CheckBox
-                    android:id="@+id/chk_Chungnam"
+                    android:id="@+id/region_Chungnam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedChungnam}"
                     android:padding="10dp"
                     android:text="충남"
                     android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Chungbuk"
-                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search" />
+                    app:layout_constraintLeft_toRightOf="@+id/region_Chungbuk"
+                    app:layout_constraintTop_toBottomOf="@id/region_All" />
 
                 <CheckBox
-                    android:id="@+id/chk_Daegu"
+                    android:id="@+id/region_Gyeongbuk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:padding="10dp"
-                    android:text="대구"
-                    android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Chungnam"
-                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search" />
-
-                <CheckBox
-                    android:id="@+id/chk_Gyeongbuk"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedGyeongbuk}"
                     android:padding="10dp"
                     android:text="경북"
                     android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Daegu"
-                    app:layout_constraintTop_toBottomOf="@id/chk_all_region_search" />
+                    app:layout_constraintLeft_toRightOf="@id/region_Chungnam"
+                    app:layout_constraintTop_toBottomOf="@id/region_All" />
 
                 <CheckBox
-                    android:id="@+id/chk_Gwangju"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
-                    android:text="광주"
-                    android:textSize="13dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong" />
-
-                <CheckBox
-                    android:id="@+id/chk_Jeonbuk"
+                    android:id="@+id/region_Gyeonnam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:padding="10dp"
-                    android:text="전북"
-                    android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Gwangju"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong" />
-
-                <CheckBox
-                    android:id="@+id/chk_Jeonam"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
-                    android:text="전남"
-                    android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Jeonbuk"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong" />
-
-                <CheckBox
-                    android:id="@+id/chk_Gyeonganm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedGyeongnam}"
                     android:padding="10dp"
                     android:text="경남"
                     android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Jeonam"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong" />
+                    app:layout_constraintLeft_toRightOf="@id/region_Gyeongbuk"
+                    app:layout_constraintTop_toBottomOf="@id/region_All" />
 
                 <CheckBox
-                    android:id="@+id/chk_Ulsan"
+                    android:id="@+id/region_Jeonbuk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedJeonbuk}"
                     android:padding="10dp"
-                    android:text="울산"
+                    android:text="전북"
                     android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Gyeonganm"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Sejong" />
+                    app:layout_constraintLeft_toRightOf="@+id/region_Gyeonnam"
+                    app:layout_constraintTop_toBottomOf="@id/region_All" />
 
                 <CheckBox
-                    android:id="@+id/chk_Busan"
+                    android:id="@+id/region_Jeonam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedJeonam}"
                     android:padding="10dp"
-                    android:text="부산"
+                    android:text="전남"
                     android:textSize="13dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Gwangju" />
+                    app:layout_constraintTop_toBottomOf="@id/region_Chungbuk" />
 
                 <CheckBox
-                    android:id="@+id/chk_Jeju"
+                    android:id="@+id/region_Jeju"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:checked="@={vm.isSelectedJeju}"
                     android:padding="10dp"
                     android:text="제주"
                     android:textSize="13dp"
-                    app:layout_constraintLeft_toRightOf="@+id/chk_Busan"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Gwangju" />
-
+                    app:layout_constraintLeft_toRightOf="@id/region_Jeonam"
+                    app:layout_constraintTop_toBottomOf="@id/region_Gyeonnam" />
 
                 <ImageView
                     android:id="@+id/load_activity_register_icon"
@@ -490,10 +434,10 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_downloading_file"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Busan" />
+                    app:layout_constraintTop_toBottomOf="@id/region_Jeonam" />
 
                 <TextView
-                    android:id="@+id/load_activity_register_text"
+                    android:id="@+id/loadButton"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
@@ -501,7 +445,7 @@
                     android:text="불러오기"
                     android:textColor="#000000"
                     app:layout_constraintLeft_toRightOf="@+id/load_activity_register_icon"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Busan" />
+                    app:layout_constraintTop_toBottomOf="@id/region_Jeonam" />
 
                 <ImageView
                     android:id="@+id/Refresh_icon"
@@ -511,11 +455,11 @@
                     android:layout_marginTop="10dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_redo_arrow_symbol"
-                    app:layout_constraintLeft_toRightOf="@+id/load_activity_register_text"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Busan" />
+                    app:layout_constraintLeft_toRightOf="@+id/loadButton"
+                    app:layout_constraintTop_toBottomOf="@id/region_Jeonam" />
 
                 <TextView
-                    android:id="@+id/Refresh_text"
+                    android:id="@+id/refreshButton"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
@@ -523,7 +467,7 @@
                     android:text="초기화"
                     android:textColor="#000000"
                     app:layout_constraintLeft_toRightOf="@+id/Refresh_icon"
-                    app:layout_constraintTop_toBottomOf="@id/chk_Busan" />
+                    app:layout_constraintTop_toBottomOf="@id/region_Jeonam" />
 
                 <Button
                     android:id="@+id/searchButton"
@@ -537,7 +481,7 @@
                     android:textSize="15dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Refresh_text" />
+                    app:layout_constraintTop_toBottomOf="@+id/refreshButton" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

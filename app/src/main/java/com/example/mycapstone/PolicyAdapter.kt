@@ -33,14 +33,7 @@ class PolicyAdapter(private val listener: PolicyClickEventListener) : RecyclerVi
       holder.bind(data[position])
 
       //상세 페이지로 이동
-      holder.itemView.setOnClickListener { //            val intent = Intent(holder.itemView?.context, PolicyDetail::class.java)
-         //            intent.putExtra("policyItem", data[position])
-         //            startActivity(holder.itemView.context, intent, null)
-
-         //         if (it.context.toString().contains("MainActivity")) {
-         //            val action = HomeFragmentDirections.actionHomeFragmentToPolicyDetailFragment(data[position])
-         //            findNavController(it).navigate(action)
-         //         }
+      holder.itemView.setOnClickListener {
          listener.onItemClick(data[position])
       }
    }
