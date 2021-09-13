@@ -44,6 +44,12 @@
         <action
             android:id="@+id/action_setting_fragment_to_login_fragment"
             app:destination="@id/login_fragment" />
+        <action
+            android:id="@+id/action_setting_fragment_to_search_fragment"
+            app:destination="@+id/search_fragment"/>
+        <action
+            android:id="@+id/action_setting_fragment_to_bookmark_fragment"
+            app:destination="@+id/bookmark_fragment"/>
     </fragment>
 
     <fragment

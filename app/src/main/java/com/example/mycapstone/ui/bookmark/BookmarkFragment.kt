@@ -24,11 +24,11 @@ class BookmarkFragment: Fragment() {
         binding.customToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_setting -> {
-                    findNavController().navigate(R.id.action_home_fragment_to_setting_fragment)
+                    findNavController().navigate(R.id.action_bookmark_fragment_to_setting_fragment)
                     true
                 }
                 R.id.action_search -> {
-                    findNavController().navigate(R.id.action_home_fragment_to_search_fragment)
+                    findNavController().navigate(R.id.action_bookmark_fragment_to_search_fragment)
                     true
                 }
                 else -> false
