@@ -89,6 +89,13 @@
         android:name="com.example.mycapstone.ui.bookmark.BookmarkFragment"
         android:label="즐겨찾기"
         tools:layout="@layout/bookmark_fragment">
+
+        <action
+            android:id="@+id/action_bookmark_fragment_to_search_fragment"
+            app:destination="@id/search_fragment"/>
+        <action
+            android:id="@+id/action_bookmark_fragment_to_setting_fragment"
+            app:destination="@+id/setting_fragment"/>
     </fragment>
 
 </navigation>

@@ -21,6 +21,20 @@ class BookmarkFragment: Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.bookmark_fragment, container, false)
         binding.vm = viewModel
 
+        binding.customToolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_setting -> {
+                    findNavController().navigate(R.id.action_home_fragment_to_setting_fragment)
+                    true
+                }
+                R.id.action_search -> {
+                    findNavController().navigate(R.id.action_home_fragment_to_search_fragment)
+                    true
+                }
+                else -> false
+            }
+        }
+
         return binding.root
     }
 
