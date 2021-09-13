@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_home_fragment_to_search_fragment"
             app:destination="@id/search_fragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_bookmark_fragment"
+            app:destination="@+id/bookmark_fragment"/>
     </fragment>
 
     <fragment
@@ -80,4 +83,12 @@
             android:name="isFromSearchFragment"
             app:argType="boolean" />
     </fragment>
+
+    <fragment
+        android:id="@+id/bookmark_fragment"
+        android:name="com.example.mycapstone.ui.bookmark.BookmarkFragment"
+        android:label="즐겨찾기"
+        tools:layout="@layout/bookmark_fragment">
+    </fragment>
+
 </navigation>
