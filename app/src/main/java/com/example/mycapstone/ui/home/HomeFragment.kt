@@ -48,6 +48,10 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
                findNavController().navigate(R.id.action_home_fragment_to_search_fragment)
                true
             }
+            R.id.action_star -> {
+               findNavController().navigate(R.id.action_home_fragment_to_bookmark_fragment)
+               true
+            }
             else -> false
          }
       }
