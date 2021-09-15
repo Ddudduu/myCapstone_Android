@@ -151,6 +151,10 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
       findNavController().navigate(action)
    }
 
+   override fun likeClick(policy: Policy) {
+      policy.name?.let { Log.i("좋아요: ", it) }
+   }
+
    private fun checkField(result: Array<String>) {
       result.forEach {
          when (true) {

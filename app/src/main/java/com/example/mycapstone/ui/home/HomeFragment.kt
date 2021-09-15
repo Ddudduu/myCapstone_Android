@@ -103,5 +103,9 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
       val action = HomeFragmentDirections.actionHomeFragmentToPolicyDetailFragment(policy)
       findNavController().navigate(action)
    }
+
+   override fun likeClick(policy: Policy) {
+      policy.name?.let { Log.i("좋아요: ", it) }
+   }
 }
 

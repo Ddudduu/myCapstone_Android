@@ -1,18 +1,23 @@
 package com.example.mycapstone
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycapstone.data.Policy
 import com.example.mycapstone.databinding.PolicyItemBinding
+import org.w3c.dom.Text
+import kotlin.properties.Delegates
 
 class PolicyAdapter(private val listener: PolicyClickEventListener) : RecyclerView.Adapter<PolicyAdapter.ViewHolder>() {
 
-
    interface PolicyClickEventListener {
       fun onItemClick(policy: Policy)
+      fun likeClick(policy: Policy)
    }
 
    var data = mutableListOf<Policy>()
@@ -33,17 +38,28 @@ class PolicyAdapter(private val listener: PolicyClickEventListener) : RecyclerVi
       holder.bind(data[position])
 
       //상세 페이지로 이동
-      holder.itemView.setOnClickListener {
-         listener.onItemClick(data[position])
-      }
+      //      holder.itemView.setOnClickListener {
+      //         listener.onItemClick(data[position])
+      //      }
+
    }
 
-   class ViewHolder(private val binding: PolicyItemBinding) : RecyclerView.ViewHolder(binding.root) {
+   inner class ViewHolder(private val binding: PolicyItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
       fun bind(item: Policy) {
          binding.policyField.text = item.field
          binding.policyName.text = item.name
          binding.policyPeriod.text = item.period
          binding.policyTarget.text = item.age
+
+         //상세 페이지로 이동
+         binding.policyName.setOnClickListener {
+            listener.onItemClick(item)
+         }
+
+         binding.likeButton.setOnClickListener {
+            listener.likeClick(item)
+         }
       }
    }
 

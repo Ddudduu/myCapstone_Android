@@ -72,11 +72,11 @@
         <View
             android:layout_width="30dp"
             android:layout_height="25dp"
-            app:layout_constraintEnd_toStartOf="@id/imgview"
+            app:layout_constraintEnd_toStartOf="@id/likeButton"
             app:layout_constraintTop_toTopOf="@id/policyTarget" />
 
         <ImageView
-            android:id="@+id/imgview"
+            android:id="@+id/likeButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:src="@drawable/star"
