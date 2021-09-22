@@ -123,8 +123,20 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
       postFirebase(policy)
       policy.isAdd = false
     } else {
-      Toast.makeText(requireContext(), "좋아요 해제!", Toast.LENGTH_SHORT).show()
+      deleteFirebase(policy)
       policy.isAdd = true
+    }
+  }
+
+  private fun deleteFirebase(policy: Policy) {
+    firebaseReference = firebaseDB.reference
+
+    try {
+      policy.id?.let { firebaseReference.child("likeList").child(it).removeValue() }
+      Toast.makeText(requireContext(), "좋아요 해제!", Toast.LENGTH_SHORT).show()
+
+    } catch (e: Exception) {
+      Log.e("firebase Error: ", e.localizedMessage)
     }
   }
 

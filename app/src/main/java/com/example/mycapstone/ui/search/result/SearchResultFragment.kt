@@ -74,36 +74,40 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
     if (!isFromSearchFragment) {
       return
     }
-    checkField(fieldIntent)
-    checkRegion(regionIntent)
 
-    fieldArray.forEach {
-      if (it == "PLCYTP040001") {
-        callApi(displayNum = 50, policyType = it, jobState = jobIntent)
-      } else {
-        callApi(policyType = it, jobState = jobIntent)
-      }
-    }
-    Log.i("지역 필터: ", regionArray.toString())
+    if (regionFilteredArray.isNullOrEmpty()) {
 
-    val regionHandler = Handler()
-    regionHandler.postDelayed({ //전체일때는 filter 안함
-      if (!regionArray.contains("전체")) {
-        regionArray.forEach {
-          filterRegion(it)
+      checkField(fieldIntent)
+      checkRegion(regionIntent)
+
+      fieldArray.forEach {
+        if (it == "PLCYTP040001") {
+          callApi(displayNum = 50, policyType = it, jobState = jobIntent)
+        } else {
+          callApi(policyType = it, jobState = jobIntent)
         }
       }
-    }, 1000)
+      Log.i("지역 필터: ", regionArray.toString())
 
-    val jobStateHandler = Handler()
-    jobStateHandler.postDelayed({
-      checkJob(jobIntent)
-    }, 2000)
+      val regionHandler = Handler()
+      regionHandler.postDelayed({ //전체일때는 filter 안함
+        if (!regionArray.contains("전체")) {
+          regionArray.forEach {
+            filterRegion(it)
+          }
+        }
+      }, 1000)
 
-    val showDataHandler = Handler()
-    showDataHandler.postDelayed({
-      policyAdapter.replaceList(regionFilteredArray)
-    }, 5000)
+      val jobStateHandler = Handler()
+      jobStateHandler.postDelayed({
+        checkJob(jobIntent)
+      }, 2000)
+
+      val showDataHandler = Handler()
+      showDataHandler.postDelayed({
+        policyAdapter.replaceList(regionFilteredArray)
+      }, 5000)
+    }
   }
 
   private fun callApi(displayNum: Int = 10, policyType: String, jobState: String?) {
