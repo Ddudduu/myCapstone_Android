@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.example.mycapstone.ui.setting.login.LoginViewModel" />
+            type="com.example.mycapstone.ui.login.LoginViewModel" />
     </data>
 
     <LinearLayout
@@ -26,23 +26,21 @@
 
         <Button
             android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="210dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_marginTop="24dp"
-            android:paddingHorizontal="16dp"
-            android:text="구글 로그인"
-            android:textColor="@color/black" />
+            android:layout_marginTop="36dp"
+            android:background="@drawable/btn_google_signin_light_normal_web" />
 
         <Button
             android:id="@+id/logoutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="12dp"
-            android:paddingHorizontal="24dp"
+            android:layout_marginTop="18dp"
+            android:background="#FADFDB"
             android:text="로그아웃"
-            android:textColor="@color/black" />
-
+            android:textColor="#F24B4B"
+            android:textSize="17sp" />
     </LinearLayout>
 </layout>

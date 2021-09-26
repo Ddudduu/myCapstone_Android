@@ -30,9 +30,18 @@ class HomeViewModel : ViewModel() {
           Log.i("SUCCESS !! ", "${response.raw()}")
           for (i in 0..9) {
             policyList.add(
-                Policy(
-                    response.body()?.jynEmpSptList?.get(i)?.busiId, response.body()?.jynEmpSptList?.get(i)?.busiNm, response.body()?.jynEmpSptList?.get(i)?.busiTpCd, response.body()?.jynEmpSptList?.get(i)?.date, response.body()?.jynEmpSptList?.get(i)?.age, response.body()?.jynEmpSptList?.get(i)?.dtlBusiNm, response.body()?.jynEmpSptList?.get(i)?.edubgEtcCont, response.body()?.jynEmpSptList?.get(i)?.jobState, response.body()?.jynEmpSptList?.get(i)?.detalUrl, true
-                )
+              Policy(
+                response.body()?.jynEmpSptList?.get(i)?.busiId,
+                response.body()?.jynEmpSptList?.get(i)?.busiNm,
+                response.body()?.jynEmpSptList?.get(i)?.busiTpCd,
+                response.body()?.jynEmpSptList?.get(i)?.date,
+                response.body()?.jynEmpSptList?.get(i)?.age,
+                response.body()?.jynEmpSptList?.get(i)?.dtlBusiNm,
+                response.body()?.jynEmpSptList?.get(i)?.edubgEtcCont,
+                response.body()?.jynEmpSptList?.get(i)?.jobState,
+                response.body()?.jynEmpSptList?.get(i)?.detalUrl,
+                true
+              )
             )
           }
           _mDatas.value = policyList

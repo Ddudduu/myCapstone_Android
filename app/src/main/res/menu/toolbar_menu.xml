@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_star"
-        android:icon="@drawable/star"
+        android:icon="@drawable/star_filled"
         android:title="즐겨찾기"
         app:showAsAction="always"></item>
 
@@ -13,14 +13,9 @@
         android:icon="@drawable/search"
         android:title="검색"
         app:showAsAction="always"></item>
-    <item
-        android:id="@+id/action_noti"
-        android:icon="@drawable/notification"
-        android:title="알림"
-        app:showAsAction="always"></item>
 
     <item
-        android:id="@+id/action_setting"
+        android:id="@+id/action_login"
         android:icon="@drawable/setting"
         android:title="설정"
         app:showAsAction="always"></item>

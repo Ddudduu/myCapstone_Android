@@ -32,27 +32,28 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
   private var retrofit: Retrofit? = null
   private var startPage = 1
 
-  private lateinit var firebaseDB: FirebaseDatabase
-  private lateinit var firebaseReference: DatabaseReference
+  lateinit var firebaseDB: FirebaseDatabase
+  lateinit var firebaseReference: DatabaseReference
 
   override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
   ): View? {
     // home_fragment 화면에 그리기
     binding = DataBindingUtil.inflate<HomeFragmentBinding>(
-        inflater, R.layout.home_fragment, container, false
+      inflater, R.layout.home_fragment, container, false
     )
 
     binding.rvPolicy.layoutManager =
-        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+      LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     binding.rvPolicy.adapter = policyAdapter
     binding.viewModel = viewModel
+
     binding.customToolbar.setOnMenuItemClickListener {
       when (it.itemId) {
-        R.id.action_setting -> {
-          findNavController().navigate(R.id.action_home_fragment_to_setting_fragment)
+        R.id.action_login -> {
+          findNavController().navigate(R.id.action_home_fragment_to_login_fragment)
           true
         }
         R.id.action_search -> {
@@ -160,7 +161,7 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
   private fun toMap(policy: Policy): Map<String, Any> {
     val result: HashMap<String, Any> = HashMap()
 
-    policy.name?.let { result.put("id", it) }
+    policy.name?.let { result.put("name", it) }
     policy.field?.let { result.put("field", it) }
     policy.period?.let { result.put("period", it) }
     policy.age?.let { result.put("age", it) }

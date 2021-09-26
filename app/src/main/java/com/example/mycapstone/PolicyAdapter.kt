@@ -9,7 +9,7 @@ import com.example.mycapstone.data.Policy
 import com.example.mycapstone.databinding.PolicyItemBinding
 
 class PolicyAdapter(private val listener: PolicyClickEventListener) :
-    RecyclerView.Adapter<PolicyAdapter.ViewHolder>() {
+  RecyclerView.Adapter<PolicyAdapter.ViewHolder>() {
 
   interface PolicyClickEventListener {
     fun onItemClick(policy: Policy)
@@ -21,7 +21,7 @@ class PolicyAdapter(private val listener: PolicyClickEventListener) :
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
     val layoutInflater = LayoutInflater.from(parent.context)
     val binding = DataBindingUtil.inflate<ViewDataBinding>(
-        layoutInflater, R.layout.policy_item, parent, false
+      layoutInflater, R.layout.policy_item, parent, false
     )
     return ViewHolder(binding as PolicyItemBinding)
   }
@@ -35,7 +35,7 @@ class PolicyAdapter(private val listener: PolicyClickEventListener) :
   }
 
   inner class ViewHolder(private val binding: PolicyItemBinding) :
-      RecyclerView.ViewHolder(binding.root) {
+    RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Policy) {
       binding.policyField.text = item.field

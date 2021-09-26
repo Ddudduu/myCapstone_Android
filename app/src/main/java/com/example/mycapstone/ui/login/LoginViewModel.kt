@@ -1,4 +1,4 @@
-package com.example.mycapstone.ui.setting.login
+package com.example.mycapstone.ui.login
 
 import androidx.lifecycle.ViewModel
 

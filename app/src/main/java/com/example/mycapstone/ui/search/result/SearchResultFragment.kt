@@ -47,14 +47,14 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
   private var regionFilteredArray = ArrayList<Policy>()
 
   override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
   ): View? {
     binding =
-        DataBindingUtil.inflate(inflater, R.layout.search_result_fragment, container, false)
+      DataBindingUtil.inflate(inflater, R.layout.search_result_fragment, container, false)
     binding.rvPolicy.layoutManager =
-        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+      LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     binding.rvPolicy.adapter = policyAdapter
 
     binding.vm = viewModel
@@ -119,36 +119,26 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
 
       callResult?.enqueue(object : Callback<jynEmpSptRoot> {
         override fun onResponse(
-            call: Call<jynEmpSptRoot>,
-            response: Response<jynEmpSptRoot>
+          call: Call<jynEmpSptRoot>,
+          response: Response<jynEmpSptRoot>
         ) {
           for (i in 0 until displayNum) {
             policyList.add(
-                Policy(
-                    response.body()?.jynEmpSptList?.get(i)?.busiId,
-                    response.body()?.jynEmpSptList?.get(i)?.busiNm,
-                    response.body()?.jynEmpSptList?.get(i)?.busiTpCd,
-                    response.body()?.jynEmpSptList?.get(i)?.date,
-                    response.body()?.jynEmpSptList?.get(i)?.age,
-                    response.body()?.jynEmpSptList?.get(i)?.dtlBusiNm,
-                    response.body()?.jynEmpSptList?.get(i)?.edubgEtcCont,
-                    response.body()?.jynEmpSptList?.get(i)?.empEtcCont,
-                    response.body()?.jynEmpSptList?.get(i)?.detalUrl,
-                    true
-                )
+              Policy(
+                response.body()?.jynEmpSptList?.get(i)?.busiId,
+                response.body()?.jynEmpSptList?.get(i)?.busiNm,
+                response.body()?.jynEmpSptList?.get(i)?.busiTpCd,
+                response.body()?.jynEmpSptList?.get(i)?.date,
+                response.body()?.jynEmpSptList?.get(i)?.age,
+                response.body()?.jynEmpSptList?.get(i)?.dtlBusiNm,
+                response.body()?.jynEmpSptList?.get(i)?.edubgEtcCont,
+                response.body()?.jynEmpSptList?.get(i)?.empEtcCont,
+                response.body()?.jynEmpSptList?.get(i)?.detalUrl,
+                true
+              )
             )
           }
           originalPolicyList = policyList
-
-          //               val handler2 = Handler()
-          //               handler2.postDelayed({
-          //                  checkJob(jobState)
-          //               }, 1000)
-
-
-          //               policyList.forEach {
-          //                  it.name?.let { it1 -> Log.i("필터링 결과: ", it1) }
-          //               }
         }
 
         override fun onFailure(call: Call<jynEmpSptRoot>, t: Throwable) {
@@ -163,7 +153,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
 
   override fun onItemClick(policy: Policy) {
     val action =
-        SearchResultFragmentDirections.actionSearchResultFragmentToPolicyDetailFragment(policy)
+      SearchResultFragmentDirections.actionSearchResultFragmentToPolicyDetailFragment(policy)
     findNavController().navigate(action)
   }
 

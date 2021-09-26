@@ -16,14 +16,14 @@
             android:id="@+id/action_home_fragment_to_policy_detail_fragment"
             app:destination="@id/policy_detail_fragment" />
         <action
-            android:id="@+id/action_home_fragment_to_setting_fragment"
-            app:destination="@id/setting_fragment" />
-        <action
             android:id="@+id/action_home_fragment_to_search_fragment"
             app:destination="@id/search_fragment" />
         <action
             android:id="@+id/action_home_fragment_to_bookmark_fragment"
             app:destination="@+id/bookmark_fragment"/>
+        <action
+            android:id="@+id/action_home_fragment_to_login_fragment"
+            app:destination="@id/login_fragment" />
     </fragment>
 
     <fragment
@@ -37,26 +37,17 @@
     </fragment>
 
     <fragment
-        android:id="@+id/setting_fragment"
-        android:name="com.example.mycapstone.ui.setting.SettingFragment"
-        android:label="환경설정"
-        tools:layout="@layout/setting_fragment">
-        <action
-            android:id="@+id/action_setting_fragment_to_login_fragment"
-            app:destination="@id/login_fragment" />
-        <action
-            android:id="@+id/action_setting_fragment_to_search_fragment"
-            app:destination="@+id/search_fragment"/>
-        <action
-            android:id="@+id/action_setting_fragment_to_bookmark_fragment"
-            app:destination="@+id/bookmark_fragment"/>
-    </fragment>
-
-    <fragment
         android:id="@+id/login_fragment"
-        android:name="com.example.mycapstone.ui.setting.login.LoginFragment"
+        android:name="com.example.mycapstone.ui.login.LoginFragment"
         android:label="로그인회원가입"
-        tools:layout="@layout/login_fragment" />
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_login_fragment_to_bookmark_fragment"
+            app:destination="@id/bookmark_fragment" />
+        <action
+            android:id="@+id/action_login_fragment_to_search_fragment"
+            app:destination="@id/search_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/search_fragment"
@@ -102,6 +93,12 @@
         <action
             android:id="@+id/action_bookmark_fragment_to_setting_fragment"
             app:destination="@+id/setting_fragment"/>
+        <action
+            android:id="@+id/action_bookmark_fragment_to_policy_detail_fragment"
+            app:destination="@id/policy_detail_fragment" />
+        <action
+            android:id="@+id/action_bookmark_fragment_to_login_fragment"
+            app:destination="@id/login_fragment" />
     </fragment>
 
 </navigation>
