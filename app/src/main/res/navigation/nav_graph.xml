@@ -11,7 +11,6 @@
         android:name="com.example.mycapstone.ui.home.HomeFragment"
         android:label="홈"
         tools:layout="@layout/home_fragment">
-
         <action
             android:id="@+id/action_home_fragment_to_policy_detail_fragment"
             app:destination="@id/policy_detail_fragment" />
@@ -100,5 +99,4 @@
             android:id="@+id/action_bookmark_fragment_to_login_fragment"
             app:destination="@id/login_fragment" />
     </fragment>
-
 </navigation>

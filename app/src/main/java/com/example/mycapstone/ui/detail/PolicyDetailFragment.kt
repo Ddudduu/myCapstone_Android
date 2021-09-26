@@ -15,41 +15,41 @@ import com.example.mycapstone.R
 import com.example.mycapstone.databinding.PolicyDetailFragmentBinding
 
 class PolicyDetailFragment : Fragment() {
-    private lateinit var binding: PolicyDetailFragmentBinding
-    private val viewModel: PolicyDetailViewModel by viewModels()
+  private lateinit var binding: PolicyDetailFragmentBinding
+  private val viewModel: PolicyDetailViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.policy_detail_fragment,
-            container,
-            false
-        )
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    binding = DataBindingUtil.inflate(
+      inflater,
+      R.layout.policy_detail_fragment,
+      container,
+      false
+    )
 
-        binding.vm = viewModel
-        return binding.root
+    binding.vm = viewModel
+    return binding.root
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    val args: PolicyDetailFragmentArgs by navArgs()
+    var policyItem = args.policyItem
+
+    if (policyItem != null) {
+      viewModel.updatePolicyInfo(policyItem)
+      Log.i("선택 Item: ", policyItem.toString())
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val args: PolicyDetailFragmentArgs by navArgs()
-        var policyItem = args.policyItem
-
-        if (policyItem != null) {
-            viewModel.updatePolicyInfo(policyItem)
-            Log.i("선택 Item: ", policyItem.toString())
-        }
-
-        binding.url.setOnClickListener {
-            if (binding.url.text != null) {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(binding.url.text.toString()))
-                startActivity(intent)
-            }
-        }
+    binding.url.setOnClickListener {
+      if (binding.url.text != null) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(binding.url.text.toString()))
+        startActivity(intent)
+      }
     }
+  }
 }

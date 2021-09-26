@@ -183,7 +183,6 @@
                     android:textSize="13dp" />
             </RadioGroup>
 
-
             <TextView
                 android:id="@+id/tv_residence"
                 android:layout_width="wrap_content"
@@ -422,7 +421,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/button_sign_up"
                 app:layout_constraintTop_toBottomOf="@id/radio_employment_status" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

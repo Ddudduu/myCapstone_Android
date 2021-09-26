@@ -11,25 +11,20 @@
     <item
         android:id="@+id/foundation"
         android:title="창업"
-        app:showAsAction="always"
-
-       />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/job"
         android:title="취업"
-        app:showAsAction="always"
-        />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/residence"
         android:title="주거/교통"
-        app:showAsAction="always"
-        />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/culture"
         android:title="문화"
-        app:showAsAction="always"
-        />
+        app:showAsAction="always" />
 </menu>
