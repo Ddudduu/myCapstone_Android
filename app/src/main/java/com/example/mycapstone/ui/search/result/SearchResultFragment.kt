@@ -19,6 +19,7 @@ import com.example.mycapstone.api.RetrofitClient
 import com.example.mycapstone.data.Policy
 import com.example.mycapstone.data.jynEmpSptRoot
 import com.example.mycapstone.databinding.SearchResultFragmentBinding
+import com.example.mycapstone.enum.PolicyType
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -158,18 +159,18 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
     result.forEach {
       when (true) {
         it.contains("전체") -> {
-          fieldArray.add("PLCYTP01")
-          fieldArray.add("PLCYTP020002")
-          fieldArray.add("PLCYTP040002")
-          fieldArray.add("PLCYTP040001")
-          fieldArray.add("PLCYTP030002")
+          fieldArray.add(PolicyType.Job.value)
+          fieldArray.add(PolicyType.Foundation.value)
+          fieldArray.add(PolicyType.ResidenceAndTraffic.value)
+          fieldArray.add(PolicyType.LivingAndFinance.value)
+          fieldArray.add(PolicyType.Culture.value)
           return
         }
-        it.contains("취업") -> fieldArray.add("PLCYTP01")
-        it.contains("창업") -> fieldArray.add("PLCYTP020002")
-        it.contains("주거") -> fieldArray.add("PLCYTP040002")
-        it.contains("생활") -> fieldArray.add("PLCYTP040001")
-        it.contains("문화") -> fieldArray.add("PLCYTP030002")
+        it.contains("취업") -> fieldArray.add(PolicyType.Job.value)
+        it.contains("창업") -> fieldArray.add(PolicyType.Foundation.value)
+        it.contains("주거") -> fieldArray.add(PolicyType.ResidenceAndTraffic.value)
+        it.contains("생활") -> fieldArray.add(PolicyType.LivingAndFinance.value)
+        it.contains("문화") -> fieldArray.add(PolicyType.Culture.value)
       }
     }
   }

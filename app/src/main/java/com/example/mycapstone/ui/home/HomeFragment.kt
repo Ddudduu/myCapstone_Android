@@ -17,6 +17,7 @@ import com.example.mycapstone.R
 import com.example.mycapstone.api.RetrofitClient
 import com.example.mycapstone.data.Policy
 import com.example.mycapstone.databinding.HomeFragmentBinding
+import com.example.mycapstone.enum.PolicyType
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import retrofit2.Retrofit
@@ -37,10 +38,7 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
   lateinit var firebaseReference: DatabaseReference
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    // home_fragment 화면에 그리기
-    binding = DataBindingUtil.inflate<HomeFragmentBinding>(
-      inflater, R.layout.home_fragment, container, false
-    )
+    binding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false)
 
     binding.rvPolicy.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     binding.rvPolicy.adapter = policyAdapter
@@ -75,24 +73,22 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
     api = retrofit?.create(Api::class.java)
 
     viewModel.mDatas.observe(viewLifecycleOwner, {
-      // 추가한 data 대입
       policyAdapter.data = it as MutableList<Policy>
-      // data 변경 알림
       policyAdapter.notifyDataSetChanged()
     })
 
-    viewModel.getPolicy(api, startPage, policyType = "PLCYTP040001")
+    viewModel.getPolicy(api, startPage, policyType = PolicyType.LivingAndFinance.value)
 
     binding.btmNavi.setOnItemSelectedListener {
       startPage = 1
       binding.rvPolicy.scrollToPosition(0)
       viewModel.policyList.clear()
       when (it.title) {
-        "생활/금융" -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP040001")
-        "창업" -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP020002")
-        "취업" -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP01")
-        "주거/교통" -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP040002")
-        "문화" -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP030002")
+        "생활/금융" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.LivingAndFinance.value)
+        "창업" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Foundation.value)
+        "취업" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Job.value)
+        "주거/교통" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.ResidenceAndTraffic.value)
+        "문화" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Culture.value)
       }
       return@setOnItemSelectedListener true
     }
@@ -101,11 +97,11 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
       startPage += 1
       Log.i("page: ", startPage.toString())
       when (binding.btmNavi.selectedItemId) {
-        R.id.living -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP040001")
-        R.id.foundation -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP020002")
-        R.id.job -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP01")
-        R.id.residence -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP040002")
-        R.id.culture -> viewModel.getPolicy(api, startPage, policyType = "PLCYTP040002")
+        R.id.living -> viewModel.getPolicy(api, startPage, policyType = PolicyType.LivingAndFinance.value)
+        R.id.foundation -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Foundation.value)
+        R.id.job -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Job.value)
+        R.id.residence -> viewModel.getPolicy(api, startPage, policyType = PolicyType.ResidenceAndTraffic.value)
+        R.id.culture -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Culture.value)
       }
     }
   }
