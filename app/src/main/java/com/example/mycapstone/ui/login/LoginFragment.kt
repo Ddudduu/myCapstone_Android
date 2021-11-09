@@ -2,7 +2,6 @@ package com.example.mycapstone.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mycapstone.R
 import com.example.mycapstone.databinding.LoginFragmentBinding
+import com.example.mycapstone.ui.base.BaseNavigationFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import timber.log.Timber
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseNavigationFragment(R.layout.login_fragment) {
   val viewModel: LoginViewModel by viewModels()
   lateinit var binding: LoginFragmentBinding
 
@@ -40,17 +40,16 @@ class LoginFragment : Fragment() {
     binding.customToolbar.setOnMenuItemClickListener {
       when (it.itemId) {
         R.id.action_search -> {
-          findNavController().navigate(R.id.action_login_fragment_to_search_fragment)
+          navigate(R.id.action_login_fragment_to_search_fragment)
           true
         }
         R.id.action_star -> {
-          findNavController().navigate(R.id.action_login_fragment_to_bookmark_fragment)
+          navigate(R.id.action_login_fragment_to_bookmark_fragment)
           true
         }
         else -> false
       }
     }
-
     return binding.root
   }
 
@@ -89,17 +88,18 @@ class LoginFragment : Fragment() {
   private fun firebaseAuthWithGoogle(idToken: String?) {
     val credential = GoogleAuthProvider.getCredential(idToken, null)
     firebaseAuth.signInWithCredential(credential)?.addOnCompleteListener(requireActivity()) { task ->
-        if (task.isSuccessful) {
-          // 인증에 성공한 후, 로그인된 유저 정보 가져오기
-          val email = firebaseAuth.currentUser?.email
+      if (task.isSuccessful) {
+        // 인증에 성공한 후, 로그인된 유저 정보 가져오기
+        firebaseAuth.currentUser?.email?.let { firebaseAuth.currentUser?.displayName?.let { it1 -> viewModel.updateUserInfo(it, it1) } }
+        Timber.i("===lmw user Email=== ${viewModel.userEmail.value}")
 
-          email?.let { em -> Timber.i("===lmw user Email=== $em") }
-          Toast.makeText(
-            requireContext(), "${firebaseAuth.currentUser?.displayName} 님 안녕하세요!", Toast.LENGTH_LONG
-          ).show()
-        } else {
-          Toast.makeText(requireContext(), "로그인에 실패했습니다", Toast.LENGTH_LONG).show()
-        }
+        Toast.makeText(
+          requireContext(), "${viewModel.userName.value} 님 안녕하세요!", Toast.LENGTH_LONG
+        ).show()
+        navigateUp(R.id.home_fragment, false)
+      } else {
+        Toast.makeText(requireContext(), "로그인에 실패했습니다", Toast.LENGTH_LONG).show()
       }
+    }
   }
 }

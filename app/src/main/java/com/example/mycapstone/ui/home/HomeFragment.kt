@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,6 +19,7 @@ import com.example.mycapstone.api.RetrofitClient
 import com.example.mycapstone.data.Policy
 import com.example.mycapstone.databinding.HomeFragmentBinding
 import com.example.mycapstone.enum.PolicyType
+import com.example.mycapstone.ui.base.BaseNavigationFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import retrofit2.Retrofit
@@ -25,7 +27,7 @@ import timber.log.Timber
 import java.util.*
 import kotlin.collections.HashMap
 
-class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
+class HomeFragment : BaseNavigationFragment(R.layout.home_fragment), PolicyAdapter.PolicyClickEventListener {
   private lateinit var binding: HomeFragmentBinding
   val viewModel: HomeViewModel by viewModels()
   var policyAdapter: PolicyAdapter = PolicyAdapter(this)
@@ -95,7 +97,8 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
 
     binding.addButton.setOnClickListener {
       startPage += 1
-      Log.i("page: ", startPage.toString())
+      Timber.i("===lmw page=== $startPage")
+
       when (binding.btmNavi.selectedItemId) {
         R.id.living -> viewModel.getPolicy(api, startPage, policyType = PolicyType.LivingAndFinance.value)
         R.id.foundation -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Foundation.value)
@@ -107,8 +110,7 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
   }
 
   override fun onItemClick(policy: Policy) {
-    val action = HomeFragmentDirections.actionHomeFragmentToPolicyDetailFragment(policy)
-    findNavController().navigate(action)
+    navigate(R.id.action_home_fragment_to_policy_detail_fragment, bundleOf("policyItem" to policy))
   }
 
   override fun likeClick(policy: Policy) {
@@ -138,7 +140,7 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
 
     try {
       val childUpdates: HashMap<String, Any> = HashMap()
-      var postValue = toMap(policy)
+      var postValue = viewModel.toMap(policy)
       childUpdates["/likeList/" + policy.id] = postValue
       firebaseReference.updateChildren(childUpdates)
 
@@ -147,22 +149,6 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
     } catch (e: Exception) {
       Timber.e("===lmw firebase Error=== ${e.localizedMessage}")
     }
-  }
-
-  // firebase database 에 저장할 수 있는 형태로 변경
-  private fun toMap(policy: Policy): Map<String, Any> {
-    val result: HashMap<String, Any> = HashMap()
-
-    policy.name?.let { result.put("name", it) }
-    policy.field?.let { result.put("field", it) }
-    policy.period?.let { result.put("period", it) }
-    policy.age?.let { result.put("age", it) }
-    policy.content?.let { result.put("content", it) }
-    policy.education?.let { result.put("education", it) }
-    policy.jobState?.let { result.put("jobState", it) }
-    policy.url?.let { result.put("url", it) }
-
-    return result
   }
 }
 

@@ -57,4 +57,20 @@ class HomeViewModel : ViewModel() {
       Timber.e("===lmw Error=== $e")
     }
   }
+
+  // firebase database 에 저장할 수 있는 형태로 변경
+  fun toMap(policy: Policy): Map<String, Any> {
+    val result: HashMap<String, Any> = HashMap()
+
+    policy.name?.let { result.put("name", it) }
+    policy.field?.let { result.put("field", it) }
+    policy.period?.let { result.put("period", it) }
+    policy.age?.let { result.put("age", it) }
+    policy.content?.let { result.put("content", it) }
+    policy.education?.let { result.put("education", it) }
+    policy.jobState?.let { result.put("jobState", it) }
+    policy.url?.let { result.put("url", it) }
+
+    return result
+  }
 }
