@@ -2,6 +2,8 @@ package com.example.mycapstone.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mycapstone.enum.JobState
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -92,13 +94,13 @@ class SearchViewModel : ViewModel() {
 
   private fun checkJobState() {
     if (isSelectedAll_Job.value) {
-      jobState = "무관"
+      jobState = JobState.NoMatter.value
     }
     if (isSelectedJob.value) {
-      jobState = "재직자"
+      jobState = JobState.InOffice.value
     }
     if (isSelectedNoJob.value) {
-      jobState = "미취업자"
+      jobState = JobState.Unemployment.value
     }
   }
 
