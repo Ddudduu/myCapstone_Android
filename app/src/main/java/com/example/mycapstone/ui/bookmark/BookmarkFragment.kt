@@ -15,6 +15,7 @@ import com.example.mycapstone.R
 import com.example.mycapstone.data.Policy
 import com.example.mycapstone.databinding.BookmarkFragmentBinding
 import com.google.firebase.database.*
+import timber.log.Timber
 
 class BookmarkFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
   val viewModel: BookmarkViewModel by viewModels()
@@ -61,7 +62,7 @@ class BookmarkFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
     database = FirebaseDatabase.getInstance().reference.child("likeList")
     database.addListenerForSingleValueEvent(object : ValueEventListener {
       override fun onCancelled(error: DatabaseError) {
-        Log.e("firebase db error: ", error.message)
+        Timber.e("===lmw firebase db error=== ${error.message}")
       }
 
       override fun onDataChange(snapshot: DataSnapshot) {
@@ -80,7 +81,7 @@ class BookmarkFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
             )
             dataArrayList.add(policy)
           } catch (e: Exception) {
-            Log.e("error: ", e.localizedMessage)
+            Timber.e("===lmw error=== ${e.localizedMessage}")
           }
         }
         policyAdapter.replaceList(dataArrayList)

@@ -23,6 +23,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import timber.log.Timber
 
 class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
   val viewModel: SearchResultViewModel by viewModels()
@@ -46,15 +47,9 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
   // 지역 필터링 통과한 결과
   private var regionFilteredArray = ArrayList<Policy>()
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View? {
-    binding =
-      DataBindingUtil.inflate(inflater, R.layout.search_result_fragment, container, false)
-    binding.rvPolicy.layoutManager =
-      LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    binding = DataBindingUtil.inflate(inflater, R.layout.search_result_fragment, container, false)
+    binding.rvPolicy.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     binding.rvPolicy.adapter = policyAdapter
 
     binding.vm = viewModel
@@ -70,7 +65,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
     val regionIntent = args.region
     val isFromSearchFragment = args.isFromSearchFragment
 
-    Log.i("isFromSearchFragment: ", isFromSearchFragment.toString())
+    Timber.i("===lmw isFromSearchFragment=== $isFromSearchFragment")
     if (!isFromSearchFragment) {
       return
     }
@@ -87,7 +82,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
           callApi(policyType = it, jobState = jobIntent)
         }
       }
-      Log.i("지역 필터: ", regionArray.toString())
+      Timber.i("===lmw 지역 필터=== $regionArray")
 
       val regionHandler = Handler()
       regionHandler.postDelayed({ //전체일때는 filter 안함
@@ -118,10 +113,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
       val callResult = api?.getInfo(key, "xml", startPage, displayNum, policyType)
 
       callResult?.enqueue(object : Callback<jynEmpSptRoot> {
-        override fun onResponse(
-          call: Call<jynEmpSptRoot>,
-          response: Response<jynEmpSptRoot>
-        ) {
+        override fun onResponse(call: Call<jynEmpSptRoot>, response: Response<jynEmpSptRoot>) {
           for (i in 0 until displayNum) {
             policyList.add(
               Policy(
@@ -147,18 +139,19 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
 
       })
     } catch (e: Exception) {
-      Log.e("Error: ", "$e")
+      Timber.e("===lmw Error=== $e")
     }
   }
 
   override fun onItemClick(policy: Policy) {
-    val action =
-      SearchResultFragmentDirections.actionSearchResultFragmentToPolicyDetailFragment(policy)
+    val action = SearchResultFragmentDirections.actionSearchResultFragmentToPolicyDetailFragment(policy)
     findNavController().navigate(action)
   }
 
   override fun likeClick(policy: Policy) {
-    policy.name?.let { Log.i("좋아요: ", it) }
+    policy.name?.let {
+      Timber.i("===lmw Like=== ${it}")
+    }
   }
 
   private fun checkField(result: Array<String>) {
@@ -219,7 +212,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
         val handler = Handler()
         handler.postDelayed({
           regionFilteredArray.addAll(temp)
-          Log.i("서울 필터링: ", regionFilteredArray.toString())
+          Timber.i("===lmw 서울=== $regionFilteredArray")
         }, 500)
       }
 
@@ -229,7 +222,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
         val handler = Handler()
         handler.postDelayed({
           regionFilteredArray.addAll(temp)
-          Log.i("경기 필터링: ", regionFilteredArray.toString())
+          Timber.i("===lmw 경기=== $regionFilteredArray")
         }, 500)
       }
       region == "인천" -> {
@@ -238,7 +231,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
         val handler = Handler()
         handler.postDelayed({
           regionFilteredArray.addAll(temp)
-          Log.i("인천 필터링: ", regionFilteredArray.toString())
+          Timber.i("===lmw 인천=== $regionFilteredArray")
         }, 500)
       }
       region == "강원" -> {
@@ -247,7 +240,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
         val handler = Handler()
         handler.postDelayed({
           regionFilteredArray.addAll(temp)
-          Log.i("강원 필터링: ", regionFilteredArray.toString())
+          Timber.i("===lmw 강원=== $regionFilteredArray")
         }, 500)
       }
       region == "충청북도" -> {
@@ -256,7 +249,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
         val handler = Handler()
         handler.postDelayed({
           regionFilteredArray.addAll(temp)
-          Log.i("충청북도 필터링: ", regionFilteredArray.toString())
+          Timber.i("===lmw 충북=== $regionFilteredArray")
         }, 500)
       }
       region == "충청남도" -> {
@@ -265,7 +258,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
         val handler = Handler()
         handler.postDelayed({
           regionFilteredArray.addAll(temp)
-          Log.i("충청남도 필터링: ", regionFilteredArray.toString())
+          Timber.i("===lmw 충남=== $regionFilteredArray")
         }, 500)
       }
       region == "경상북도" -> {
@@ -274,7 +267,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
         val handler = Handler()
         handler.postDelayed({
           regionFilteredArray.addAll(temp)
-          Log.i("경상북도 필터링: ", regionFilteredArray.toString())
+          Timber.i("===lmw 경북=== $regionFilteredArray")
         }, 500)
       }
       region == "경상남도" -> {
@@ -283,7 +276,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
         val handler = Handler()
         handler.postDelayed({
           regionFilteredArray.addAll(temp)
-          Log.i("경상남도 필터링: ", regionFilteredArray.toString())
+          Timber.i("===lmw 경남=== $regionFilteredArray")
         }, 500)
       }
       region == "전라북도" -> {
@@ -292,7 +285,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
         val handler = Handler()
         handler.postDelayed({
           regionFilteredArray.addAll(temp)
-          Log.i("전라북도 필터링: ", regionFilteredArray.toString())
+          Timber.i("===lmw 전북=== $regionFilteredArray")
         }, 500)
       }
       region == "전라남도" -> {
@@ -301,7 +294,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
         val handler = Handler()
         handler.postDelayed({
           regionFilteredArray.addAll(temp)
-          Log.i("전라남도 필터링: ", regionFilteredArray.toString())
+          Timber.i("===lmw 전남=== $regionFilteredArray")
         }, 500)
       }
       region == "제주" -> {
@@ -310,7 +303,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
         val handler = Handler()
         handler.postDelayed({
           regionFilteredArray.addAll(temp)
-          Log.i("제주 필터링: ", regionFilteredArray.toString())
+          Timber.i("===lmw 제주=== $regionFilteredArray")
         }, 500)
       }
     }

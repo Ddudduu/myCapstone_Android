@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 class HomeViewModel : ViewModel() {
   private val key = "WNKS76ZZ47R04LNMS88MK2VR1HJ"
@@ -27,7 +28,7 @@ class HomeViewModel : ViewModel() {
 
       callResult?.enqueue(object : Callback<jynEmpSptRoot> {
         override fun onResponse(call: Call<jynEmpSptRoot>, response: Response<jynEmpSptRoot>) {
-          Log.i("SUCCESS !! ", "${response.raw()}")
+          Timber.i("===lmw success=== ${response.raw()}")
           for (i in 0..9) {
             policyList.add(
               Policy(
@@ -48,12 +49,12 @@ class HomeViewModel : ViewModel() {
         }
 
         override fun onFailure(call: Call<jynEmpSptRoot>, t: Throwable) {
-          Log.e("call Error: ", "${t.printStackTrace()}")
+          Timber.e("===lmw call Error=== ${t.printStackTrace()}")
         }
       })
 
     } catch (e: Exception) {
-      Log.e("Error: ", "$e")
+      Timber.e("===lmw Error=== $e")
     }
   }
 }

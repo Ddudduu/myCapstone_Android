@@ -19,23 +19,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import timber.log.Timber
 
 class LoginFragment : Fragment() {
   val viewModel: LoginViewModel by viewModels()
   lateinit var binding: LoginFragmentBinding
 
-  private val webClientId =
-    "633392197313-ougjvtocqosbff7hde9ghtck73ks2bhi.apps.googleusercontent.com"
+  private val webClientId = "633392197313-ougjvtocqosbff7hde9ghtck73ks2bhi.apps.googleusercontent.com"
   private lateinit var client: GoogleSignInClient
   private lateinit var firebaseAuth: FirebaseAuth
 
   private val requestCode = 1
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View? {
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
     binding.vm = viewModel
     binding.loginButton.setOnClickListener { setGoogleLogin() }
@@ -67,9 +63,7 @@ class LoginFragment : Fragment() {
 
   private fun setGoogleLogin() {
     // 요청 정보 옵션
-    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-      .requestIdToken(webClientId)
-      .requestEmail().build()
+    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(webClientId).requestEmail().build()
     client = GoogleSignIn.getClient(requireActivity(), gso)
     firebaseAuth = FirebaseAuth.getInstance()
     // 로그인 요청
@@ -94,17 +88,14 @@ class LoginFragment : Fragment() {
 
   private fun firebaseAuthWithGoogle(idToken: String?) {
     val credential = GoogleAuthProvider.getCredential(idToken, null)
-    firebaseAuth.signInWithCredential(credential)
-      ?.addOnCompleteListener(requireActivity()) { task ->
+    firebaseAuth.signInWithCredential(credential)?.addOnCompleteListener(requireActivity()) { task ->
         if (task.isSuccessful) {
           // 인증에 성공한 후, 로그인된 유저 정보 가져오기
           val email = firebaseAuth.currentUser?.email
 
-          email?.let { em -> Log.i("사용자 이메일: ", em) }
+          email?.let { em -> Timber.i("===lmw user Email=== $em") }
           Toast.makeText(
-            requireContext(),
-            "${firebaseAuth.currentUser?.displayName} 님 안녕하세요!",
-            Toast.LENGTH_LONG
+            requireContext(), "${firebaseAuth.currentUser?.displayName} 님 안녕하세요!", Toast.LENGTH_LONG
           ).show()
         } else {
           Toast.makeText(requireContext(), "로그인에 실패했습니다", Toast.LENGTH_LONG).show()

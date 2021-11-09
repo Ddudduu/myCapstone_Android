@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.mycapstone.R
 import com.example.mycapstone.databinding.PolicyDetailFragmentBinding
+import timber.log.Timber
 
 class PolicyDetailFragment : Fragment() {
   private lateinit var binding: PolicyDetailFragmentBinding
@@ -42,7 +43,7 @@ class PolicyDetailFragment : Fragment() {
 
     if (policyItem != null) {
       viewModel.updatePolicyInfo(policyItem)
-      Log.i("선택 Item: ", policyItem.toString())
+      Timber.i("===lmw 선택 Item=== $policyItem")
     }
 
     binding.url.setOnClickListener {

@@ -20,6 +20,7 @@ import com.example.mycapstone.databinding.HomeFragmentBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import retrofit2.Retrofit
+import timber.log.Timber
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -35,18 +36,13 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
   lateinit var firebaseDB: FirebaseDatabase
   lateinit var firebaseReference: DatabaseReference
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View? {
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     // home_fragment 화면에 그리기
     binding = DataBindingUtil.inflate<HomeFragmentBinding>(
       inflater, R.layout.home_fragment, container, false
     )
 
-    binding.rvPolicy.layoutManager =
-      LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+    binding.rvPolicy.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     binding.rvPolicy.adapter = policyAdapter
     binding.viewModel = viewModel
 
@@ -137,7 +133,7 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
       Toast.makeText(requireContext(), "좋아요 해제!", Toast.LENGTH_SHORT).show()
 
     } catch (e: Exception) {
-      Log.e("firebase Error: ", e.localizedMessage)
+      Timber.e("===lmw firebase Error=== ${e.localizedMessage}")
     }
   }
 
@@ -153,7 +149,7 @@ class HomeFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
       Toast.makeText(requireContext(), "좋아요 성공!", Toast.LENGTH_SHORT).show()
 
     } catch (e: Exception) {
-      Log.e("firebase Error: ", e.localizedMessage)
+      Timber.e("===lmw firebase Error=== ${e.localizedMessage}")
     }
   }
 

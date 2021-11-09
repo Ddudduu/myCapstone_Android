@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mycapstone.data.Policy
 import com.example.mycapstone.databinding.PolicyItemBinding
 
-class PolicyAdapter(private val listener: PolicyClickEventListener) :
-  RecyclerView.Adapter<PolicyAdapter.ViewHolder>() {
+class PolicyAdapter(private val listener: PolicyClickEventListener) : RecyclerView.Adapter<PolicyAdapter.ViewHolder>() {
 
   interface PolicyClickEventListener {
     fun onItemClick(policy: Policy)
@@ -34,8 +33,7 @@ class PolicyAdapter(private val listener: PolicyClickEventListener) :
     holder.bind(data[position])
   }
 
-  inner class ViewHolder(private val binding: PolicyItemBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+  inner class ViewHolder(private val binding: PolicyItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Policy) {
       binding.policyField.text = item.field
