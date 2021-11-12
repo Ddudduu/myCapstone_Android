@@ -23,18 +23,13 @@ class BookmarkFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
   var policyAdapter: PolicyAdapter = PolicyAdapter(this)
 
   private lateinit var database: DatabaseReference
-  private var dataArrayList: ArrayList<Policy> = ArrayList()
+  private var dataArrayList: MutableList<Policy> = ArrayList()
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View? {
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     binding = DataBindingUtil.inflate(inflater, R.layout.bookmark_fragment, container, false)
     binding.vm = viewModel
 
-    binding.rvPolicy.layoutManager =
-      LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+    binding.rvPolicy.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     binding.rvPolicy.adapter = policyAdapter
 
     binding.customToolbar.setOnMenuItemClickListener {
@@ -84,7 +79,7 @@ class BookmarkFragment : Fragment(), PolicyAdapter.PolicyClickEventListener {
             Timber.e("===lmw error=== ${e.localizedMessage}")
           }
         }
-        policyAdapter.replaceList(dataArrayList)
+        policyAdapter.submitList(dataArrayList)
       }
     })
 

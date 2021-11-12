@@ -40,13 +40,13 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
   private var originalPolicyList = mutableListOf<Policy>()
 
   // 선택한 field 필터 저장
-  private val fieldArray = ArrayList<String>()
+  private var fieldArray = mutableListOf<String>()
   private var startPage = 1
 
-  private val regionArray = ArrayList<String>()
+  private var regionArray = mutableListOf<String>()
 
   // 지역 필터링 통과한 결과
-  private var regionFilteredArray = ArrayList<Policy>()
+  private var regionFilteredArray = mutableListOf<Policy>()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     binding = DataBindingUtil.inflate(inflater, R.layout.search_result_fragment, container, false)
@@ -101,7 +101,7 @@ class SearchResultFragment : Fragment(), PolicyAdapter.PolicyClickEventListener 
 
       val showDataHandler = Handler()
       showDataHandler.postDelayed({
-        policyAdapter.replaceList(regionFilteredArray)
+        policyAdapter.submitList(regionFilteredArray)
       }, 5000)
     }
   }

@@ -4,18 +4,29 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycapstone.data.Policy
 import com.example.mycapstone.databinding.PolicyItemBinding
 
-class PolicyAdapter(private val listener: PolicyClickEventListener) : RecyclerView.Adapter<PolicyAdapter.ViewHolder>() {
+class PolicyAdapter(private val listener: PolicyClickEventListener) : ListAdapter<Policy, PolicyAdapter.ViewHolder>(PolicyListDiffCallback) {
 
   interface PolicyClickEventListener {
     fun onItemClick(policy: Policy)
     fun likeClick(policy: Policy)
   }
 
-  var data = mutableListOf<Policy>()
+  object PolicyListDiffCallback : DiffUtil.ItemCallback<Policy>() {
+    override fun areItemsTheSame(oldItem: Policy, newItem: Policy): Boolean {
+      return oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: Policy, newItem: Policy): Boolean {
+      return oldItem.uuid == newItem.uuid
+    }
+
+  }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
     val layoutInflater = LayoutInflater.from(parent.context)
@@ -25,12 +36,8 @@ class PolicyAdapter(private val listener: PolicyClickEventListener) : RecyclerVi
     return ViewHolder(binding as PolicyItemBinding)
   }
 
-  override fun getItemCount(): Int {
-    return data.size
-  }
-
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    holder.bind(data[position])
+    holder.bind(getItem(position))
   }
 
   inner class ViewHolder(private val binding: PolicyItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -61,10 +68,5 @@ class PolicyAdapter(private val listener: PolicyClickEventListener) : RecyclerVi
         listener.likeClick(item)
       }
     }
-  }
-
-  fun replaceList(newData: MutableList<Policy>) {
-    data = newData.toMutableList()
-    notifyDataSetChanged()
   }
 }

@@ -1,16 +1,13 @@
 package com.example.mycapstone.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mycapstone.api.Api
 import com.example.mycapstone.PolicyAdapter
@@ -32,80 +29,48 @@ class HomeFragment : BaseNavigationFragment(R.layout.home_fragment), PolicyAdapt
   val viewModel: HomeViewModel by viewModels()
   var policyAdapter: PolicyAdapter = PolicyAdapter(this)
 
-  private var api: Api? = null
-  private var retrofit: Retrofit? = null
+  private lateinit var api: Api
+  private lateinit var retrofit: Retrofit
   private var startPage = 1
 
   lateinit var firebaseDB: FirebaseDatabase
   lateinit var firebaseReference: DatabaseReference
 
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     binding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false)
-
-    binding.rvPolicy.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-    binding.rvPolicy.adapter = policyAdapter
-    binding.viewModel = viewModel
-
-    binding.customToolbar.setOnMenuItemClickListener {
-      when (it.itemId) {
-        R.id.action_login -> {
-          findNavController().navigate(R.id.action_home_fragment_to_login_fragment)
-          true
-        }
-        R.id.action_search -> {
-          findNavController().navigate(R.id.action_home_fragment_to_search_fragment)
-          true
-        }
-        R.id.action_star -> {
-          findNavController().navigate(R.id.action_home_fragment_to_bookmark_fragment)
-          true
-        }
-        else -> false
-      }
-    }
-
-    firebaseDB = FirebaseDatabase.getInstance()
     return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
+    binding.apply {
+      vm = viewModel
+
+      // 요건 adapter 설정하기 전에 해줘야함
+      if (!policyAdapter.hasObservers()) {
+        policyAdapter.setHasStableIds(true)
+      }
+      rvPolicy.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+      rvPolicy.adapter = policyAdapter
+    }
+    setToolbar()
+
+    firebaseDB = FirebaseDatabase.getInstance()
     retrofit = RetrofitClient.getInstance()
     api = retrofit?.create(Api::class.java)
 
     viewModel.mDatas.observe(viewLifecycleOwner, {
-      policyAdapter.data = it as MutableList<Policy>
-      policyAdapter.notifyDataSetChanged()
+      policyAdapter.submitList(it.toMutableList())
+
     })
 
     viewModel.getPolicy(api, startPage, policyType = PolicyType.LivingAndFinance.value)
 
-    binding.btmNavi.setOnItemSelectedListener {
-      startPage = 1
-      binding.rvPolicy.scrollToPosition(0)
-      viewModel.policyList.clear()
-      when (it.title) {
-        "생활/금융" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.LivingAndFinance.value)
-        "창업" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Foundation.value)
-        "취업" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Job.value)
-        "주거/교통" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.ResidenceAndTraffic.value)
-        "문화" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Culture.value)
-      }
-      return@setOnItemSelectedListener true
-    }
-
+    setBottomNavi()
     binding.addButton.setOnClickListener {
-      startPage += 1
-      Timber.i("===lmw page=== $startPage")
-
-      when (binding.btmNavi.selectedItemId) {
-        R.id.living -> viewModel.getPolicy(api, startPage, policyType = PolicyType.LivingAndFinance.value)
-        R.id.foundation -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Foundation.value)
-        R.id.job -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Job.value)
-        R.id.residence -> viewModel.getPolicy(api, startPage, policyType = PolicyType.ResidenceAndTraffic.value)
-        R.id.culture -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Culture.value)
-      }
+      setAddButton()
     }
   }
 
@@ -148,6 +113,55 @@ class HomeFragment : BaseNavigationFragment(R.layout.home_fragment), PolicyAdapt
 
     } catch (e: Exception) {
       Timber.e("===lmw firebase Error=== ${e.localizedMessage}")
+    }
+  }
+
+  private fun setToolbar() {
+    binding.customToolbar.setOnMenuItemClickListener {
+      when (it.itemId) {
+        R.id.action_login -> {
+          navigate(R.id.action_home_fragment_to_login_fragment)
+          true
+        }
+        R.id.action_search -> {
+          navigate(R.id.action_home_fragment_to_search_fragment)
+          true
+        }
+        R.id.action_star -> {
+          navigate(R.id.action_home_fragment_to_bookmark_fragment)
+          true
+        }
+        else -> false
+      }
+    }
+  }
+
+  private fun setBottomNavi() {
+    binding.btmNavi.setOnItemSelectedListener {
+      startPage = 1
+      binding.rvPolicy.scrollToPosition(0)
+      viewModel.policyList.clear()
+      when (it.title) {
+        "생활/금융" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.LivingAndFinance.value)
+        "창업" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Foundation.value)
+        "취업" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Job.value)
+        "주거/교통" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.ResidenceAndTraffic.value)
+        "문화" -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Culture.value)
+      }
+      return@setOnItemSelectedListener true
+    }
+  }
+
+  private fun setAddButton() {
+    startPage += 1
+    Timber.i("===lmw page=== $startPage")
+
+    when (binding.btmNavi.selectedItemId) {
+      R.id.living -> viewModel.getPolicy(api, startPage, policyType = PolicyType.LivingAndFinance.value)
+      R.id.foundation -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Foundation.value)
+      R.id.job -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Job.value)
+      R.id.residence -> viewModel.getPolicy(api, startPage, policyType = PolicyType.ResidenceAndTraffic.value)
+      R.id.culture -> viewModel.getPolicy(api, startPage, policyType = PolicyType.Culture.value)
     }
   }
 }
